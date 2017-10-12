@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC  
+    "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+    <mappers>  
+        <mapper resource="mapping/UsersMapper.xml"/> 
+        <mapper resource="mapping/PoetriesMapper.xml"/>  
+        <mapper resource="mapping/AppreciationMapper.xml"/>
+        <mapper resource="mapping/CommentMapper.xml"/>
+        <mapper resource="mapping/PictureMapper.xml"/>
+        <mapper resource="mapping/PoetsMapper.xml"/>
+        <mapper resource="mapping/PraiseMapper.xml"/>
+        <mapper resource="mapping/TranslationMapper.xml"/>
+    </mappers>  
+</configuration>
