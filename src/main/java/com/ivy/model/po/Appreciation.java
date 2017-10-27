@@ -1,6 +1,7 @@
 package com.ivy.model.po;
 
 public class Appreciation {
+
     private Integer id;
 
     private String content;

@@ -2,7 +2,9 @@ package com.ivy.model.po;
 
 import java.util.Date;
 
+//旧版的诗
 public class Poetries {
+
     private Integer id;
 
     private Integer poetId;

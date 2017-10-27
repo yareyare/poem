@@ -21,6 +21,7 @@ CREATE TABLE `poetries` (
   `content` text COLLATE utf8_unicode_ci,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dynasty` varchar(16) COLLATE utf8_unicode_ci NOT NULL COMMENT '朝代',
+  `types` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '本诗所有的所属类型',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
