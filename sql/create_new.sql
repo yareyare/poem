@@ -1,4 +1,4 @@
-#诗人表
+#朝代表
 CREATE TABLE `dynasty` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '朝代',
@@ -28,6 +28,23 @@ CREATE TABLE `poem` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+#诗歌的其他项 译，注，赏，创作背景等
+CREATE TABLE `poem_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poem_id` int(11) NOT NULL COMMENT '诗id',
+  `type` INT (4) NOT NULL COMMENT '类型:译文 赏析 创作背景等',
+  `content` text COLLATE utf8_unicode_ci COMMENT '译注赏内容',
+  `reference` text COLLATE utf8_unicode_ci COMMENT '参考',
+  `sort` INT (2) NOT NULL COMMENT '排序' ,
+
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '可用标志位：1-可用 0-停用',
+  `delete_flag` int(1) NOT NULL DEFAULT '0' COMMENT '删除标志位：1-已删除 0-未删除',
+  `data_version` INT(8) NOT NULL DEFAULT '0' COMMENT '数据修改版本号',
+  `create_date` datetime NOT NULL DEFAULT '2017-00-00 00:00:00' COMMENT '创建时间',
+  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2529 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 #诗人表
 CREATE TABLE `poet` (
@@ -44,14 +61,11 @@ CREATE TABLE `poet` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2529 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-#诗歌的其他项 译，注，赏，创作背景等
-CREATE TABLE `poet_detail` (
+#诗歌类型表
+CREATE TABLE `poem_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `poem_id` int(11) NOT NULL COMMENT '诗id',
-  `type` INT (4) NOT NULL COMMENT '类型:译文 赏析 创作背景等',
-  `content` text COLLATE utf8_unicode_ci COMMENT '译注赏内容',
-  `reference` text COLLATE utf8_unicode_ci COMMENT '参考',
-  `sort` INT (2) NOT NULL COMMENT '排序' ,
+  `type` varchar(16) DEFAULT NULL COMMENT '大类',
+  `type1` varchar(16) DEFAULT NULL COMMENT '小类',
 
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '可用标志位：1-可用 0-停用',
   `delete_flag` int(1) NOT NULL DEFAULT '0' COMMENT '删除标志位：1-已删除 0-未删除',
@@ -59,5 +73,18 @@ CREATE TABLE `poet_detail` (
   `create_date` datetime NOT NULL DEFAULT '2017-00-00 00:00:00' COMMENT '创建时间',
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2529 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+#诗歌与类型关系表
+CREATE TABLE `poem_type_ref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poem_id` int(11) NOT NULL AUTO_INCREMENT,
+  `poem_type_id` int(11) NOT NULL AUTO_INCREMENT,
+
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '可用标志位：1-可用 0-停用',
+  `delete_flag` int(1) NOT NULL DEFAULT '0' COMMENT '删除标志位：1-已删除 0-未删除',
+  `data_version` INT(8) NOT NULL DEFAULT '0' COMMENT '数据修改版本号',
+  `create_date` datetime NOT NULL DEFAULT '2017-00-00 00:00:00' COMMENT '创建时间',
+  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

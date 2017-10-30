@@ -27,23 +27,3 @@ CREATE TABLE `poetries` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
-#诗歌类型表
-CREATE TABLE `poetries_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(16) DEFAULT NULL COMMENT '大类',
-  `type1` varchar(16) DEFAULT NULL COMMENT '小类',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-#诗歌与类型关系表
-CREATE TABLE `poetries_to_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `poetries_id` int(11) NOT NULL AUTO_INCREMENT,
-  `poetries_type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
