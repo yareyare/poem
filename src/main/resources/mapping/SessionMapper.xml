@@ -124,7 +124,7 @@
     and status = 1
   </select>
   
-  <insert id="insertAndGetId" keyProperty="id" parameterType="com.chengshu.Model.Session">
+  <insert id="insertAndGetId" keyProperty="id" parameterType="com.ivy.model.po.Session">
     insert into Session (id, user_id, status,
     inValidTime, createTime, updateTime
     )

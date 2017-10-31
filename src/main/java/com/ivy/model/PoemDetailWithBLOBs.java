@@ -1,6 +1,6 @@
-package com.ivy.model.po;
+package com.ivy.model;
 
-public class PoemDetailWithBLOBs extends com.ivy.model.po.PoemDetail {
+public class PoemDetailWithBLOBs extends PoemDetail {
 
     private String content;
 

@@ -3,25 +3,25 @@
     "-//mybatis.org//DTD Config 3.0//EN"  
     "http://mybatis.org/dtd/mybatis-3-config.dtd">  
 <configuration>  
-    <mappers>  
-        <mapper resource="mapping/UsersMapper.xml"/>
+    <!--<mappers>  -->
+        <!--<mapper resource="mapping/UsersMapper.xml"/>-->
 
-        <!-- 诗人 -->
-        <mapper resource="mapping/PoetsMapper.xml"/>
+        <!--&lt;!&ndash; 诗人 &ndash;&gt;-->
+        <!--<mapper resource="mapping/PoetsMapper.xml"/>-->
 
-        <!-- 诗 -->
-        <mapper resource="mapping/PoetriesMapper.xml"/>
-        <!-- 诗 类型-->
-        <mapper resource="mapping/PoetriesTypeMapper.xml"/>
-        <mapper resource="mapping/PoetriesToTypeMapper.xml"/>
+        <!--&lt;!&ndash; 诗 &ndash;&gt;-->
+        <!--<mapper resource="mapping/PoetriesMapper.xml"/>-->
+        <!--&lt;!&ndash; 诗 类型&ndash;&gt;-->
+        <!--<mapper resource="mapping/PoetriesTypeMapper.xml"/>-->
+        <!--<mapper resource="mapping/PoetriesToTypeMapper.xml"/>-->
 
-        <mapper resource="mapping/AppreciationMapper.xml"/>
-        <mapper resource="mapping/CommentMapper.xml"/>
-        <mapper resource="mapping/PictureMapper.xml"/>
+        <!--<mapper resource="mapping/AppreciationMapper.xml"/>-->
+        <!--<mapper resource="mapping/CommentMapper.xml"/>-->
+        <!--<mapper resource="mapping/PictureMapper.xml"/>-->
 
-        <mapper resource="mapping/PraiseMapper.xml"/>
-        <mapper resource="mapping/TranslationMapper.xml"/>
+        <!--<mapper resource="mapping/PraiseMapper.xml"/>-->
+        <!--<mapper resource="mapping/TranslationMapper.xml"/>-->
 
 
-    </mappers>  
+    <!--</mappers>  -->
 </configuration>
