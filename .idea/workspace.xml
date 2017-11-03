@@ -1,118 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="921a497b-4a48-47ea-b795-db5c17f84cfb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/dao/PoemDetailMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/dao/PoemMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/dao/PoemTypeMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/dao/PoemTypeRefMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/dao/PoetMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/dao/dynastyMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/daoImpl/ACommentMapperImpl.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Appreciation.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Comment.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Picture.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Poem.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/PoemContent.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/PoemDetail.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/PoemDetailWithBLOBs.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/PoemType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/PoemTypeRef.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Poet.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Poetries.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/PoetriesToType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/PoetriesType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Poets.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Praise.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Session.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Translation.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/Users.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/dynasty.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/po/Poem.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/po/PoemDetail.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/po/PoemDetailWithBLOBs.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/po/PoemType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/po/PoemTypeRef.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/po/Poet.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/ivy/model/po/dynasty.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/dao/PoemDetailMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/dao/PoemMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/dao/PoemTypeMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/dao/PoemTypeRefMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/dao/PoetMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/dao/dynastyMapper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/daoImpl/ACommentMapperImpl.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Appreciation.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Comment.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Picture.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Poem.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/PoemContent.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/PoemDetail.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/PoemDetailWithBLOBs.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/PoemType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/PoemTypeRef.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Poet.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Poetries.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/PoetriesToType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/PoetriesType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Poets.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Praise.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Session.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Translation.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/Users.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/dynasty.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/po/Poem.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/po/PoemDetail.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/po/PoemDetailWithBLOBs.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/po/PoemType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/po/PoemTypeRef.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/po/Poet.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/model/po/dynasty.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Appreciation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Comment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Picture.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Poem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/PoemContent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/PoemDetail.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/PoemDetailWithBLOBs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/PoemType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/PoemTypeRef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Poet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Poetries.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/PoetriesToType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/PoetriesType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Poets.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Praise.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Session.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Translation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/Users.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/dynasty.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ivy/daoImpl/CommentMapperImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/daoImpl/CommentMapperImpl.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/sql/create.sql" afterPath="$PROJECT_DIR$/sql/create_poem.sql" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/ivy/daoImpl/CommentMapperImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/daoImpl/ACommentMapperImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ivy/controller/CommentController.class" afterPath="$PROJECT_DIR$/target/classes/com/ivy/controller/CommentController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/poem.war" afterPath="$PROJECT_DIR$/target/poem.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/controller/CommentController.class" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/com/ivy/controller/CommentController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poem.iml" afterPath="$PROJECT_DIR$/poem.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ivy/controller/CommentController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/controller/CommentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ivy/model/po/PoemDetailWithBLOBs.java" afterPath="$PROJECT_DIR$/src/main/java/com/ivy/model/po/PoemDetailWithBLOBs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/PoetriesTypeMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/PoetriesTypeMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/SessionMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/SessionMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc-servlet.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/PoetriesTypeMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/PoetriesTypeMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/SessionMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/SessionMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring-mvc-servlet.xml" afterPath="$PROJECT_DIR$/target/classes/spring-mvc-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/poem/WEB-INF/classes/mapping/PoetriesTypeMapper.xml" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/mapping/PoetriesTypeMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/poem/WEB-INF/classes/mapping/SessionMapper.xml" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/mapping/SessionMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/poem/WEB-INF/classes/mybatis-config.xml" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/mybatis-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/poem/WEB-INF/classes/spring-mvc-servlet.xml" afterPath="$PROJECT_DIR$/target/poem/WEB-INF/classes/spring-mvc-servlet.xml" />
-    </list>
+    <list default="true" id="921a497b-4a48-47ea-b795-db5c17f84cfb" name="Default" comment="" />
     <ignored path="poem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -151,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+            <state relative-caret-position="60">
+              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -166,6 +55,36 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="269">
               <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mybatis-config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-mvc-servlet.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc-servlet.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="38" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -439,7 +358,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="poem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="poem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1269,12 +1214,12 @@
       <workItem from="1506093631407" duration="23000" />
       <workItem from="1506851500227" duration="5653000" />
       <workItem from="1507538320006" duration="18467000" />
-      <workItem from="1508829828231" duration="23309000" />
+      <workItem from="1508829828231" duration="24220000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47452000" />
+    <option name="totallyTimeSpent" value="48363000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1297,7 +1242,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.054363377" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19527897" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1573,14 +1518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ivy/dao/CommentMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1597,29 +1534,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc-servlet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
-          <folding>
-            <element signature="e#1549#1557#0" expanded="false" />
-            <element signature="e#1594#1607#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ivy/model/model/PoetriesType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1806,8 +1724,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        <state relative-caret-position="60">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="38" />
           <folding />
         </state>
       </provider>
