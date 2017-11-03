@@ -1,5 +1,10 @@
 package com.ivy.tool;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -20,77 +25,42 @@ public class DownLoadPicture {
 
     public static void main(String[] args) {
         String url = "http://img.gushiwen.org/authorImg/yuanzhen.jpg";
-        ArrayList<String> urlList = new ArrayList<String>();
-        urlList.add(url);
         try {
-            String s = encodeBase64File(url,"唐代_yuanzhen");
-            System.out.println(s);
+            // byte[]
+//            byte[] bytes = downloadByte(url);
+//            String result = new String(bytes);
+//            System.out.println(result);
+
+
+            //保存到本地
+            downloadPicture(url,"yuanzheng.jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-    /**
-     * 将base64字符解码保存文件
-     * @param base64Code
-     * @param targetPath
-     * @throws Exception
-     */
-
-    public static void decoderBase64File(String base64Code, String targetPath)
-            throws Exception {
-        byte[] buffer = new BASE64Decoder().decodeBuffer(base64Code);
-        FileOutputStream out = new FileOutputStream(targetPath);
-        out.write(buffer);
-        out.close();
 
     }
 
-    /**
-     * 将base64字符保存文本文件
-     * @param base64Code
-     * @param targetPath
-     * @throws Exception
-     */
 
-    public static void toFile(String base64Code, String targetPath)
-            throws Exception {
 
-        byte[] buffer = base64Code.getBytes();
-        FileOutputStream out = new FileOutputStream(targetPath);
-        out.write(buffer);
-        out.close();
-    }
 
-    /**
-     * 将文件转成base64 字符串
-     * @param urlString 文件网络地址
-     * @Param pictureFileName 文件保存本地的名称
-     * @return
-     * @throws Exception
-     */
+    public static byte[] downloadByte(String imgUrl) throws IOException {
+        CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(imgUrl);
 
-    public static String encodeBase64File(String urlString,String pictureFileName) throws Exception {
-        URL url = new URL(urlString);
-        System.out.println("filename="+url.getFile());
-
-        //下载
-        DataInputStream dataInputStream = new DataInputStream(url.openStream());
-        String imageName = "D://poetPicture//" + pictureFileName + ".jpg";
-        FileOutputStream fileOutputStream = new FileOutputStream(new File(imageName));
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = dataInputStream.read(buffer)) > 0) {
-            fileOutputStream.write(buffer, 0, length);
+        CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);
+        HttpEntity entity = closeableHttpResponse.getEntity();
+        if(entity != null){
+            InputStream in= entity.getContent();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byte[] buff = new byte[1024];
+            int len = -1;
+            while ((len = in.read(buff, 0, 1024)) != -1) {
+                byteArrayOutputStream.write(buff, 0, len);
+            }
+            byte[] bytes = byteArrayOutputStream.toByteArray();
+            return bytes;
         }
-
-
-        //转base64
-        FileInputStream inputFile = new FileInputStream(new File(imageName));
-        inputFile.read(buffer);
-        inputFile.close();
-        return new BASE64Encoder().encode(buffer);
+        return null;
     }
 
     /**

@@ -174,7 +174,7 @@ public class PoemTypeCrawler {
                     Element element = img.get(0);
                     String pictureUrl = element.attr("src");
                     try {
-                        poetCrawl.setPicture(DownLoadPicture.encodeBase64File(pictureUrl,poemCrawl.getChaodai().concat("_").concat(poemCrawl.getZuozhe())));
+                        poetCrawl.setPicture(new String(DownLoadPicture.downloadByte(pictureUrl)));
                     } catch (Exception e) {
                         LOG.error("诗人图片获取下载转码失败"+poemCrawl.getChaodai().concat("_").concat(poemCrawl.getZuozhe()),e);
                     }
