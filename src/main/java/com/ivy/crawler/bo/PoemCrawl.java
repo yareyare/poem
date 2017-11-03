@@ -16,18 +16,49 @@ public class PoemCrawl extends BaseObject{
     private String zuozhe;   //作者
     private String content;  //正文
     private String tag;      //类别
+    private String type;     //大分类
+    private String type1;    //小分类
+    private PoetCrawl poetCrawl; //诗人简介
 
     private List<PoemDetailCrawl> detailList = new ArrayList<PoemDetailCrawl>();
 
     public PoemCrawl() {
     }
 
-    public PoemCrawl(String title, String chaodai, String zuozhe, String content, String tag) {
+    public PoemCrawl(String title, String chaodai, String zuozhe, String content, String tag, String type, String type1, PoetCrawl poetCrawl, List<PoemDetailCrawl> detailList) {
         this.title = title;
         this.chaodai = chaodai;
         this.zuozhe = zuozhe;
         this.content = content;
         this.tag = tag;
+        this.type = type;
+        this.type1 = type1;
+        this.poetCrawl = poetCrawl;
+        this.detailList = detailList;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType1() {
+        return type1;
+    }
+
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public PoetCrawl getPoetCrawl() {
+        return poetCrawl;
+    }
+
+    public void setPoetCrawl(PoetCrawl poetCrawl) {
+        this.poetCrawl = poetCrawl;
     }
 
     public List<PoemDetailCrawl> getDetailList() {

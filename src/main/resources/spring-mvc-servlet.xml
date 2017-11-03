@@ -42,7 +42,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<property name="typeAliasesPackage" value="com.hqq.api.model.po" />
+		<property name="typeAliasesPackage" value="com.ivy.model.po" />
 		<property name="mapperLocations" value="classpath:mapping/*.xml" />
 	</bean>
 

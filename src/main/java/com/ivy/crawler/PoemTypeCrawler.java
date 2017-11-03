@@ -19,8 +19,17 @@ public class PoemTypeCrawler {
 
     private static final Logger LOG = Logger.getLogger(PoemTypeCrawler.class);
 
-    public static void poemTypeCrawlerHandler() {
+    public static final String poetPic = "/Users/ivy/poetPic/";
+    //private static final String poetPic = "D:/poetPic/";
+
+
+    public static void main(String[] args) {
         String url = "http://so.gushiwen.org/shiwen/tags.aspx";
+        PoemTypeCrawler.poemTypeCrawlerHandler(url);
+    }
+
+    public static void poemTypeCrawlerHandler(String url) {
+
         String dir = "~/temp";
         Crawler crawler = new Crawler();
         Document document = crawler.getHtmlTextByUrl(url);
@@ -38,7 +47,7 @@ public class PoemTypeCrawler {
                     for (Node aTag : nodes1) {
                         String href = aTag.attr("href");
                         String type = ((Element) aTag).text();
-                        System.out.println(type + "   " + href);
+                        System.out.println("********"+type + "   " + href);
                         poemType1CrawlerHandler(type, href);
                         if (type.equals("深秋")) {
                             System.out.println("===================完成 深秋==================");
@@ -55,10 +64,11 @@ public class PoemTypeCrawler {
         Document type1Document = crawler.getHtmlTextByUrl(url);
 
         Elements main3 = type1Document.getElementsByClass("main3");
-        Elements typecont = main3.get(0).getElementsByClass("left").get(0).getElementsByClass("typecont");
-        if (typecont != null && typecont.size() > 0) {
+        Element element = main3.get(0).getElementsByClass("left").get(0);
+        //说明还有小分类 比如唐诗三百首
+        if (element.getElementsByClass("typecont") != null && element.getElementsByClass("typecont").size() > 0) {
             System.out.println("======================" + type);
-            Iterator<Element> iterator = typecont.iterator();
+            Iterator<Element> iterator = element.getElementsByClass("typecont").iterator();
             while (iterator.hasNext()) {
                 Element next = iterator.next();
                 String type1 = next.getElementsByTag("strong").text();
@@ -70,7 +80,7 @@ public class PoemTypeCrawler {
                     System.out.println(poemName + "   " + href);
 
                     //根据链接爬诗歌
-                    crawlPoemByHref(href);
+                    crawlPoemByHref(href,type,type1);
 
                     if (type.equals("深秋")) {
                         System.out.println("===================完成 深秋==================");
@@ -78,40 +88,17 @@ public class PoemTypeCrawler {
                 }
 
             }
+        }else if (element.getElementsByClass("pages") != null && element.getElementsByClass("pages").size() > 0){//分页诗歌爬取
+            //获取分页信息
 
+            Elements poemsElements = main3.get(0).getElementsByClass("left").get(0).getElementsByClass("sons");
 
         }
-        String titletype = main3.get(0).getElementsByClass("left").get(0).getElementsByClass("sons").text();
-        Elements elementsByTag = main3.get(0).getElementsByClass("left").get(0).getElementsByClass("sons").get(0).getElementsByTag("a");
-        Iterator<Element> poemDetail = elementsByTag.iterator();
-        int i = 0;
-        String types = "";
-        String poem_title = "";
-        String dynastd = "";
-        String poet = "";
-        while (poemDetail.hasNext()) {
-            Element element = poemDetail.next();
-            if (i == 0) {
-                poem_title = element.text();
-            }
-            if (i == 1) {
-                dynastd = element.text();
-            }
-            if (i == 2) {
-                poet = element.text();
-            }
-            if (i == 3 || i == 4 || i == 5) {
 
-            }
-            if (i > 5) {
-                types = types.concat(element.text()).concat(",");
-            }
-            i++;
-        }
 
     }
 
-    public static PoemCrawl crawlPoemByHref(String href) {
+    public static PoemCrawl crawlPoemByHref(String href,String type1,String type2) {
         String url = "http://so.gushiwen.org/";
         url = url.concat(href);
         Crawler crawler = new Crawler();
@@ -119,6 +106,8 @@ public class PoemTypeCrawler {
         Elements main3 = document.getElementsByClass("main3");
         Elements sons = main3.get(0).getElementsByClass("left").get(0).children();
         PoemCrawl poemCrawl = new PoemCrawl();
+        poemCrawl.setType(type1);
+        poemCrawl.setType1(type2);
         int sort = 0;
         for (Element sonsDiv : sons) {
             sort++;
@@ -129,7 +118,8 @@ public class PoemTypeCrawler {
             }
 
             if (sonsDiv.attr("class") != null && sonsDiv.attr("class").equals("sonspic")) {//诗人介绍
-
+                PoetCrawl poet = poet(sonsDiv, poemCrawl);//图片 名字 简介
+                poemCrawl.setPoetCrawl(poet);
             }
 
             if (sonsDiv.attr("class") == null || !"sons".equals(sonsDiv.attr("class"))){//不需要的内容
@@ -162,7 +152,7 @@ public class PoemTypeCrawler {
     }
 
     // 查看数据库，有就返回id，没有就插入并返回id
-    private static Integer poet(Element sonsDiv, PoemCrawl poemCrawl) {
+    private static PoetCrawl poet(Element sonsDiv, PoemCrawl poemCrawl) {
         Elements sonChildren = sonsDiv.children();
         PoetCrawl poetCrawl = new PoetCrawl();
         poetCrawl.setName(poemCrawl.getZuozhe());
@@ -172,17 +162,18 @@ public class PoemTypeCrawler {
                 Elements img = children.getElementsByTag("img");
                 if (img.size()>0){
                     Element element = img.get(0);
+                    String authorUrl = element.parent().getElementsByTag("a").attr("href");
+                    poetCrawl.setPoetUrl(authorUrl);  // 诗人详情地址
                     String pictureUrl = element.attr("src");
                     try {
-                        poetCrawl.setPicture(new String(DownLoadPicture.downloadByte(pictureUrl)));
+                        poetCrawl.setPicture(DownLoadPicture.downloadPicture(pictureUrl,poemCrawl.getChaodai().concat("_").concat(poemCrawl.getZuozhe())));
                     } catch (Exception e) {
                         LOG.error("诗人图片获取下载转码失败"+poemCrawl.getChaodai().concat("_").concat(poemCrawl.getZuozhe()),e);
                     }
                 }
-                poetCrawl.setName(children.getElementsByTag("h1").text());
             }
         }
-        return null;
+        return poetCrawl;
     }
 
     private static PoemCrawl poem(Element sonsDiv, PoemCrawl poemCrawl) {
@@ -228,14 +219,14 @@ public class PoemTypeCrawler {
                                     otherCrawl.setType(type1);
                                     otherCrawl.setIndex(sort);
                                     otherCrawlMap.put("译文", otherCrawl);
-                                    System.out.println(otherCrawl.toJson());
+//                                    System.out.println(otherCrawl.toJson());
                                 } else if (type1.indexOf("注释") > -1) {
                                     otherCrawl = new PoemDetailCrawl();
                                     otherCrawl.setDetail(content);
                                     otherCrawl.setType(type1);
                                     otherCrawl.setIndex(sort);
                                     otherCrawlMap.put("注释", otherCrawl);
-                                    System.out.println(otherCrawl.toJson());
+//                                    System.out.println(otherCrawl.toJson());
                                 }
                             } else {
                             }
@@ -321,7 +312,5 @@ public class PoemTypeCrawler {
         return poemCrawl;
     }
 
-    public static void main(String[] args) {
-        PoemTypeCrawler.poemTypeCrawlerHandler();
-    }
+
 }

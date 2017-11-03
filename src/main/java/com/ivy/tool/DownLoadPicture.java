@@ -1,5 +1,6 @@
 package com.ivy.tool;
 
+import com.ivy.crawler.PoemTypeCrawler;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -69,12 +70,13 @@ public class DownLoadPicture {
      * @param urlString
      * @param pictureFileName
      */
-    public static void downloadPicture(String urlString, String pictureFileName) {
+    public static String downloadPicture(String urlString, String pictureFileName) {
         URL url = null;
+        String imageName = null;
         try {
             url = new URL(urlString);
             DataInputStream dataInputStream = new DataInputStream(url.openStream());
-            String imageName = "D://poetPicture//" + pictureFileName + ".jpg";
+            imageName = PoemTypeCrawler.poetPic + pictureFileName + ".jpg";
             FileOutputStream fileOutputStream = new FileOutputStream(new File(imageName));
 
             byte[] buffer = new byte[1024];
@@ -91,6 +93,7 @@ public class DownLoadPicture {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return imageName;
     }
 
     /**

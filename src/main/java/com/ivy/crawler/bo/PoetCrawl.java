@@ -10,15 +10,26 @@ public class PoetCrawl {
     private String introduce;
     private String picture; //base64
     private Integer dynastyId;
+    private String poetUrl; //poetUrl 详细介绍的url
 
     public PoetCrawl() {
     }
 
-    public PoetCrawl(Integer id, String name, String introduce, Integer dynastyId) {
+    public PoetCrawl(Integer id, String name, String introduce, String picture, Integer dynastyId, String poetUrl) {
         this.id = id;
         this.name = name;
         this.introduce = introduce;
+        this.picture = picture;
         this.dynastyId = dynastyId;
+        this.poetUrl = poetUrl;
+    }
+
+    public String getPoetUrl() {
+        return poetUrl;
+    }
+
+    public void setPoetUrl(String poetUrl) {
+        this.poetUrl = poetUrl;
     }
 
     public Integer getId() {

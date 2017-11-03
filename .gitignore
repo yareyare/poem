@@ -7,7 +7,7 @@ target/
 *.error.*
 *.iml
 *.jpg
-
+*.iml
 .mvn/
 mvnw
 mvnw.*
