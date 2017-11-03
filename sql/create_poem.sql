@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS `poetry` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci */;
+
 use poetry;
 
 #DROP TABLE IF EXISTS `poets`;

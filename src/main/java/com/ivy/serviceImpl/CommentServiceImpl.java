@@ -13,7 +13,7 @@ import com.ivy.service.CommentService;
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired
-	CommentMapper commentMapper;
+	private CommentMapper commentMapper;
 
 	public int add(Comment com) throws Exception {
 		return commentMapper.insertSelective(com);

@@ -78,8 +78,8 @@ CREATE TABLE `poem_type` (
 #诗歌与类型关系表
 CREATE TABLE `poem_type_ref` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `poem_id` int(11) NOT NULL AUTO_INCREMENT,
-  `poem_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `poem_id` int(11) NOT NULL ,
+  `poem_type_id` int(11) NOT NULL ,
 
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '可用标志位：1-可用 0-停用',
   `delete_flag` int(1) NOT NULL DEFAULT '0' COMMENT '删除标志位：1-已删除 0-未删除',
