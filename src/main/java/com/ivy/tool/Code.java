@@ -57,6 +57,22 @@ public enum Code {
     public String note;
     public Integer code;
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
     private Code(Integer code, String note) {
         this.note = note;
         this.code = code;
