@@ -88,7 +88,7 @@ public class PoemTypeCrawler {
         }
         // 没有小分类，分页查询
         else if (leftElement.getElementsByClass("pages") != null && leftElement.getElementsByClass("pages").size() > 0) {//分页诗歌爬取
-            System.out.println("分页查询类别\""+type+"\"的诗");
+            System.out.println("分页查询类别\"" + type + "\"的诗");
             //获取分页信息
             Integer total = 0;
             Integer index = 0;
@@ -98,17 +98,17 @@ public class PoemTypeCrawler {
                 Elements span = pageE.getElementsByTag("span");
                 if (span.size() > 0) {
                     index = Integer.parseInt(span.get(0).text());
-                    total = Integer.parseInt(span.get(1).text().substring(1,span.get(1).text().length()-1));
+                    total = Integer.parseInt(span.get(1).text().substring(1, span.get(1).text().length() - 1));
                     totalPages = total / 10 + 1;
                 }
             }
             System.out.println("page info :index=" + index + " total=" + total + " totalPages=" + totalPages);
-            int cnt_page=0;
-            while (cnt_page < totalPages ){
-                cnt_page ++;
-                String onePageUrl = "http://so.gushiwen.org/type.aspx?p="+cnt_page+"&t="+type;
-                List<PoemCrawl> poemCrawls = crawlOnePage(onePageUrl,type,leftElement);
-                pringPoemList(poemCrawls,cnt_page);
+            int cnt_page = 0;
+            while (cnt_page < totalPages) {
+                cnt_page++;
+                String onePageUrl = "http://so.gushiwen.org/type.aspx?p=" + cnt_page + "&t=" + type;
+                List<PoemCrawl> poemCrawls = crawlOnePage(onePageUrl, type, leftElement);
+                pringPoemList(poemCrawls, cnt_page);
             }
         }
     }
@@ -116,11 +116,11 @@ public class PoemTypeCrawler {
     /**
      * 每一页的诗歌打印
      */
-    public static void pringPoemList(List<PoemCrawl> list,Integer pageNum){
+    public static void pringPoemList(List<PoemCrawl> list, Integer pageNum) {
         int cont = 0;
-        for (PoemCrawl poemCrawl:list){
-            cont ++;
-            System.out.println("第"+pageNum+"页,第" + cont+"首");
+        for (PoemCrawl poemCrawl : list) {
+            cont++;
+            System.out.println("第" + pageNum + "页,第" + cont + "首");
             System.out.println(poemCrawl.toJson());
         }
     }
@@ -129,10 +129,10 @@ public class PoemTypeCrawler {
      * index 第几页
      * totalPage 总共有几页
      */
-    public static List<PoemCrawl> crawlOnePage(String url,String type,Element leftElement){
+    public static List<PoemCrawl> crawlOnePage(String url, String type, Element leftElement) {
         List<PoemCrawl> list = new ArrayList<>();
         Elements sons = leftElement.getElementsByClass("sons");//分页查询中的没有收诗的基础部分
-        for (Element son : sons){
+        for (Element son : sons) {
             Element element = son.getElementsByClass("cont").get(0).getElementsByTag("p").get(0);// 诗的标题
             String href = element.getElementsByTag("a").get(0).attr("href");
             PoemCrawl poemCrawl = crawlPoemByHref(href, type, null);
@@ -241,6 +241,9 @@ public class PoemTypeCrawler {
 
     private static PoemCrawl poemYiZhu(Element sonsDiv, PoemCrawl poemCrawl, Integer sort) {
         Elements sonChildren = sonsDiv.children();
+        if (MatchId.matchId(sonsDiv.attr("id")) && sonsDiv.attr("id").indexOf("quan") < 0) { //赏析或者其他的不是全文的不解析
+            return poemCrawl;
+        }
         Map<String, PoemDetailCrawl> otherCrawlMap = new HashMap<String, PoemDetailCrawl>();
         for (Element children : sonChildren) {
             PoemDetailCrawl otherCrawl;
@@ -250,36 +253,53 @@ public class PoemTypeCrawler {
                 type = h2.text();
                 if (type != null && type.indexOf("译文及注释") > -1) {
                     Elements pTags = children.getElementsByTag("p");
+                    String yiwen = "";
+                    String zhushi = "";
+                    boolean yiwenFlag = true;
                     for (Element p : pTags) {
                         sort++;
                         String content = p.text();
                         Element element = null;
+
                         try {
-                            element = (Element) p.childNodes().get(0);
-                            String type1 = element.text();
-                            content = (p.text().indexOf(type1) > -1 && p.text().indexOf(type1) < 2) ? p.text().substring(3, p.text().length()) : p.text();
                             if (p.getElementsByTag("strong") != null && p.getElementsByTag("strong").text() != null && !"".equals(p.getElementsByTag("strong").text())) { //译文 注释
-                                if (type1.indexOf("译文") > -1) {
-                                    otherCrawl = new PoemDetailCrawl();
-                                    otherCrawl.setDetail(content);
-                                    otherCrawl.setType(type1);
-                                    otherCrawl.setIndex(sort);
-                                    otherCrawlMap.put("译文", otherCrawl);
-//                                    System.out.println(otherCrawl.toJson());
-                                } else if (type1.indexOf("注释") > -1) {
-                                    otherCrawl = new PoemDetailCrawl();
-                                    otherCrawl.setDetail(content);
-                                    otherCrawl.setType(type1);
-                                    otherCrawl.setIndex(sort);
-                                    otherCrawlMap.put("注释", otherCrawl);
-//                                    System.out.println(otherCrawl.toJson());
+                                if (p.getElementsByTag("strong").text().indexOf("译文") > -1) {
+                                    yiwenFlag = true;
+                                } else if (p.getElementsByTag("strong").text().indexOf("注释") > -1) {
+                                    yiwenFlag = false;
                                 }
-                            } else {
                             }
+                            if (yiwenFlag) {
+                                yiwen = yiwen.concat(content);
+                            } else {
+                                zhushi = zhushi.concat(content);
+                            }
+
                         } catch (Exception e) {
                             System.out.println("译文及注释 解析失败");
                         }
                     }
+
+                    if (yiwen != null) {
+                        yiwen = yiwen.replace("▲", "");
+                    }
+
+                    if (zhushi != null) {
+                        zhushi = zhushi.replace("▲", "");
+                    }
+                    otherCrawl = new PoemDetailCrawl();
+                    otherCrawl.setDetail(yiwen.replaceAll("</br>", "\n"));
+                    otherCrawl.setType("译文");
+                    otherCrawl.setIndex(sort);
+                    otherCrawlMap.put("译文", otherCrawl);
+//                  System.out.println(otherCrawl.toJson());
+
+                    otherCrawl = new PoemDetailCrawl();
+                    otherCrawl.setDetail(zhushi.replaceAll("</br>", "\n"));
+                    otherCrawl.setType("注释");
+                    otherCrawl.setIndex(sort);
+                    otherCrawlMap.put("注释", otherCrawl);
+//                  System.out.println(otherCrawl.toJson());
 
                 }
 
@@ -330,16 +350,16 @@ public class PoemTypeCrawler {
                     sort++;
                     content = content.concat(p.text()).concat("</br>");
                 }
-                if (type!=null && type.equals("成语")){
+                if (type != null && type.equals("成语")) {
                     children.removeClass("h2");
                     content = children.getElementsByClass("contyishang").text();
-                    content = content.substring(content.indexOf(type),content.length());
+                    content = content.substring(content.indexOf(type), content.length());
                 }
-                if (content != null  ){
-                    content = content.replace("▲","");
+                if (content != null) {
+                    content = content.replace("▲", "");
                 }
                 try { //赏析 创作背景 等
-                    otherCrawl.setDetail(content.replaceAll("</br>","\n"));
+                    otherCrawl.setDetail(content.replaceAll("</br>", "\n"));
                     otherCrawl.setType(type);
                     otherCrawl.setIndex(sort);
                     poemCrawl.getDetailList().add(otherCrawl);
