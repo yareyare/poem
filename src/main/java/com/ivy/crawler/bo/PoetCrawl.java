@@ -1,27 +1,33 @@
 package com.ivy.crawler.bo;
 
+import com.ivy.core.model.BaseObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by admin on 2017/11/3.
  */
-public class PoetCrawl {
+public class PoetCrawl extends BaseObject{
 
     private Integer id;
     private String name;
     private String introduce;
     private String picture; //base64
     private Integer dynastyId;
-    private String poetUrl; //poetUrl 详细介绍的url
+    private String poetUrl ;
+    private List<PoetCrawlDetail> poetCrawlDetails = new ArrayList<>(); //poetUrl 详细介绍的url
 
     public PoetCrawl() {
     }
 
-    public PoetCrawl(Integer id, String name, String introduce, String picture, Integer dynastyId, String poetUrl) {
+    public PoetCrawl(Integer id, String name, String introduce, String picture, Integer dynastyId, List<PoetCrawlDetail> poetCrawlDetails) {
         this.id = id;
         this.name = name;
         this.introduce = introduce;
         this.picture = picture;
         this.dynastyId = dynastyId;
-        this.poetUrl = poetUrl;
+        this.poetCrawlDetails = poetCrawlDetails ;
     }
 
     public String getPoetUrl() {
@@ -30,6 +36,14 @@ public class PoetCrawl {
 
     public void setPoetUrl(String poetUrl) {
         this.poetUrl = poetUrl;
+    }
+
+    public List<PoetCrawlDetail> getPoetCrawlDetails() {
+        return poetCrawlDetails;
+    }
+
+    public void setPoetCrawlDetails(List<PoetCrawlDetail> poetCrawlDetails) {
+        this.poetCrawlDetails = poetCrawlDetails;
     }
 
     public Integer getId() {

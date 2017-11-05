@@ -311,7 +311,7 @@ public class PoemTypeCrawler {
                     Elements span = cankaoItem.getElementsByTag("span");
                     if (span.size() > 0) {
                         String concat = span.get(0).text().concat(span.get(1).text());
-                        cankaoContent.append(concat).append("<\br>");
+                        cankaoContent = cankaoContent.append(concat).append("\n");
                     }
                 }
                 if (otherCrawlMap.get("译文") != null) {
@@ -335,8 +335,8 @@ public class PoemTypeCrawler {
         if (MatchId.matchId(sonsDiv.attr("id")) && sonsDiv.attr("id").indexOf("quan") < 0) { //赏析或者其他的不是全文的不解析
             return poemCrawl;
         }
+        PoemDetailCrawl otherCrawl = new PoemDetailCrawl();
         for (Element children : sonChildren) {
-            PoemDetailCrawl otherCrawl = new PoemDetailCrawl();
             String type;
             if (children.attr("class").equals("contyishang")) { //类型
                 Element h2 = children.getElementsByTag("h2").get(0);
@@ -348,7 +348,7 @@ public class PoemTypeCrawler {
                 String content = "";
                 for (Element p : pTags) {
                     sort++;
-                    content = content.concat(p.text()).concat("</br>");
+                    content = content.concat(p.text()).concat("\n");
                 }
                 if (type != null && type.equals("成语")) {
                     children.removeClass("h2");
@@ -362,27 +362,38 @@ public class PoemTypeCrawler {
                     otherCrawl.setDetail(content.replaceAll("</br>", "\n"));
                     otherCrawl.setType(type);
                     otherCrawl.setIndex(sort);
-                    poemCrawl.getDetailList().add(otherCrawl);
                 } catch (Exception e) {
                     System.out.println("其他项爬去失败");
                 }
 
             }
             if (children.attr("class").equals("cankao")) { // 标签
-                Elements elementsByTag = children.getElementsByTag("div");
                 StringBuffer cankaoContent = new StringBuffer();
-                for (Element cankaoItem : elementsByTag) {
-                    Elements span = cankaoItem.getElementsByTag("span");
-                    if (span.size() > 0) {
-                        String concat = span.get(0).text().concat(span.get(1).text());
-                        cankaoContent.append(concat).append("<\br>");
+                Elements cankaoChildren = children.getAllElements();
+                for (Element e : cankaoChildren){
+                    if (e.tagName().equals("p")){
+                        cankaoContent.append(e.text());
+                    }
+                    if (e.tagName().equals("span")) {
+                        cankaoContent.append(e.text());
+                    }
+                    if (e.tagName().equals("div")){
+                        for (Element span: e.getAllElements()){
+                            if (span.tagName().equals("p")){
+                                cankaoContent.append(span.text().replace("站务邮箱：service@gushiwen.org",""));
+                            }
+                            if (span.tagName().equals("span")) {
+                                cankaoContent.append(span.text());
+                            }
+                        }
                     }
                 }
+
                 otherCrawl.setCankao(cankaoContent.toString());
+
             }
-
-
         }
+        poemCrawl.getDetailList().add(otherCrawl);
         return poemCrawl;
     }
 
