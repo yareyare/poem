@@ -19,6 +19,7 @@ public class PoemCrawl extends BaseObject{
     private String type;     //大分类
     private String type1;    //小分类
     private PoetCrawl poetCrawl; //诗人简介
+    private List<PoetCrawlDetail> poetDetail; //诗人详情
 
     private List<PoemDetailCrawl> detailList = new ArrayList<PoemDetailCrawl>();
 

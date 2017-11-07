@@ -1,23 +1,35 @@
 package com.ivy.crawler.bo;
 
+import com.ivy.core.model.BaseObject;
+
 /**
  * Created by admin on 2017/11/3.
  */
-public class PoetCrawlDetail {
+public class PoetCrawlDetail extends BaseObject{
 
-    private Integer id;   //诗人详情 id
+    private Integer id;     //诗人详情 id
     private Integer poetId; //诗人id
     private String type;    //详情类型
     private String content; //详情内容
+    private String cankao;  //参考
 
     public PoetCrawlDetail() {
     }
 
-    public PoetCrawlDetail(Integer id, Integer poetId, String type, String content) {
+    public PoetCrawlDetail(Integer id, Integer poetId, String type, String content, String cankao) {
         this.id = id;
         this.poetId = poetId;
         this.type = type;
         this.content = content;
+        this.cankao = cankao;
+    }
+
+    public String getCankao() {
+        return cankao;
+    }
+
+    public void setCankao(String cankao) {
+        this.cankao = cankao;
     }
 
     public Integer getId() {
