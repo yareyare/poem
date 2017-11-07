@@ -4,7 +4,6 @@ import com.ivy.crawler.bo.PoemCrawl;
 import com.ivy.crawler.bo.PoemDetailCrawl;
 import com.ivy.crawler.bo.PoetCrawl;
 import com.ivy.tool.DownLoadPicture;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,12 +19,13 @@ public class PoemTypeCrawler {
 
     private static final Logger LOG = Logger.getLogger(PoemTypeCrawler.class);
 
-    public static final String poetPic = "/Users/ivy/poetPic/";
-    //private static final String poetPic = "D:/poetPic/";
+    //public static final String poetPic = "/Users/ivy/poetPic/";
+    public static final String poetPic = "D:/poetPic/";
 
 
     public static void main(String[] args) {
         String url = "http://so.gushiwen.org/shiwen/tags.aspx";
+        //String url = "http://so.gushiwen.org/gushi/tangshi.aspx";
         PoemTypeCrawler.poemTypeCrawlerHandler(url);
     }
 
@@ -105,9 +105,9 @@ public class PoemTypeCrawler {
             System.out.println("page info :index=" + index + " total=" + total + " totalPages=" + totalPages);
             int cnt_page = 0;
             while (cnt_page < totalPages) {
-                cnt_page++;
+                cnt_page ++;
                 String onePageUrl = "http://so.gushiwen.org/type.aspx?p=" + cnt_page + "&t=" + type;
-                List<PoemCrawl> poemCrawls = crawlOnePage(onePageUrl, type, leftElement);
+                List<PoemCrawl> poemCrawls = crawlOnePage(onePageUrl, type);
                 pringPoemList(poemCrawls, cnt_page);
             }
         }
@@ -120,7 +120,7 @@ public class PoemTypeCrawler {
         int cont = 0;
         for (PoemCrawl poemCrawl : list) {
             cont++;
-            System.out.println("第" + pageNum + "页,第" + cont + "首");
+            System.out.println("第" + pageNum + "页,第" + cont + "首"+" "+poemCrawl.getTitle());
             System.out.println(poemCrawl.toJson());
         }
     }
@@ -129,8 +129,13 @@ public class PoemTypeCrawler {
      * index 第几页
      * totalPage 总共有几页
      */
-    public static List<PoemCrawl> crawlOnePage(String url, String type, Element leftElement) {
+    public static List<PoemCrawl> crawlOnePage(String url, String type) {
         List<PoemCrawl> list = new ArrayList<>();
+
+        Crawler crawler = new Crawler();
+        Document type1Document = crawler.getHtmlTextByUrl(url);
+        Elements main3 = type1Document.getElementsByClass("main3");
+        Element leftElement = main3.get(0).getElementsByClass("left").get(0);
         Elements sons = leftElement.getElementsByClass("sons");//分页查询中的没有收诗的基础部分
         for (Element son : sons) {
             Element element = son.getElementsByClass("cont").get(0).getElementsByTag("p").get(0);// 诗的标题
@@ -193,7 +198,6 @@ public class PoemTypeCrawler {
                 }
             }
         }
-        System.out.println(poemCrawl.toJson());
         return poemCrawl;
     }
 

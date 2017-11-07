@@ -1,25 +1,17 @@
 target/
 .idea/*
-.idea/workspace.xml
+ .idea/workspace.xml
 .settings
 *.log
 *.error
 *.iml
 *.jpg
-<<<<<<< HEAD
-.idea/workspace.xml
-*.iml
 .mvn/
 mvnw
 mvnw.*
-=======
->>>>>>> 702791fa19d495526f91ece32fce9ff30f76b9ee
 src/main/java/com/ivy/model/vo/
 src/main/webapp/img/illustration/
 target/generated-sources/
-<<<<<<< HEAD
-=======
+
 target/poem/WEB-INF/classes/com/ivy/model/vo/
 
-
->>>>>>> ff03f53c0fe960d04e483067a44f57ef778a40aa
