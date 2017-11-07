@@ -169,8 +169,16 @@ public class PoemTypeCrawler {
             }
 
             if (sonsDiv.attr("class") != null && sonsDiv.attr("class").equals("sonspic")) {//诗人介绍
-                PoetCrawl poet = poet(sonsDiv, poemCrawl);//图片 名字 简介
-                poemCrawl.setPoetCrawl(poet);
+
+                if (sonsDiv.getElementsByClass("cont").get(0).getElementsByClass("divimg").size()>0){
+                    String poetUrl = sonsDiv.getElementsByClass("cont").get(0).getElementsByClass("divimg").get(0).getElementsByTag("a").get(0).attr("href");
+                    //PoetCrawl poet = poet(sonsDiv, poemCrawl);//图片 名字 简介
+                    PoetCrawl poet = PoetCrawler.poetCrawl("http://so.gushiwen.org/"+poetUrl, poemCrawl.getChaodai(), poemCrawl.getZuozhe());
+                    poemCrawl.setPoetCrawl(poet);
+                }else{
+                    System.out.println(poemCrawl.getZuozhe()+"无图片");
+                }
+
             }
 
             if (sonsDiv.attr("class") == null || !"sons".equals(sonsDiv.attr("class"))) {//不需要的内容
