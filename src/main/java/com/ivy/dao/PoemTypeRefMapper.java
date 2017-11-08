@@ -3,7 +3,6 @@ package com.ivy.dao;
 import com.ivy.model.po.PoemTypeRef;
 
 public interface PoemTypeRefMapper {
-    int deleteByPrimaryKey(Integer id);
 
     int insert(PoemTypeRef record);
 

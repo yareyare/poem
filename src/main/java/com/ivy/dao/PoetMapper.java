@@ -3,7 +3,6 @@ package com.ivy.dao;
 import com.ivy.model.po.Poet;
 
 public interface PoetMapper {
-    int deleteByPrimaryKey(Integer id);
 
     int insert(Poet record);
 

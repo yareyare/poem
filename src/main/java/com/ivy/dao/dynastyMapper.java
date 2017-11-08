@@ -3,7 +3,6 @@ package com.ivy.dao;
 import com.ivy.model.po.dynasty;
 
 public interface dynastyMapper {
-    int deleteByPrimaryKey(Integer id);
 
     int insert(dynasty record);
 

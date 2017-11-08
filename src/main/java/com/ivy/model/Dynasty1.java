@@ -2,7 +2,7 @@ package com.ivy.model;
 
 import java.util.Date;
 
-public class dynasty {
+public class Dynasty1 {
     private Integer id;
 
     private String name;
