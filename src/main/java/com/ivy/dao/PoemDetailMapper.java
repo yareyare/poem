@@ -3,8 +3,9 @@ package com.ivy.dao;
 import com.ivy.model.po.PoemDetail;
 import com.ivy.model.po.PoemDetailWithBLOBs;
 
+import java.util.List;
+
 public interface PoemDetailMapper {
-    int deleteByPrimaryKey(Integer id);
 
     int insert(PoemDetailWithBLOBs record);
 
@@ -12,9 +13,9 @@ public interface PoemDetailMapper {
 
     PoemDetailWithBLOBs selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(PoemDetailWithBLOBs record);
+    List<PoemDetailWithBLOBs> selectList(Integer poemId);
 
-    int updateByPrimaryKeyWithBLOBs(PoemDetailWithBLOBs record);
+    int updateByPrimaryKeySelective(PoemDetailWithBLOBs record);
 
     int updateByPrimaryKey(PoemDetail record);
 }

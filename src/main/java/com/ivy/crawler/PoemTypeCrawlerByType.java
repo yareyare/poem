@@ -3,6 +3,8 @@ package com.ivy.crawler;
 import com.ivy.crawler.bo.PoemCrawl;
 import com.ivy.crawler.bo.PoemDetailCrawl;
 import com.ivy.crawler.bo.PoetCrawl;
+import com.ivy.db.DB_client;
+import com.ivy.jetty.JettyServer;
 import com.ivy.tool.DownLoadPicture;
 import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
@@ -15,47 +17,45 @@ import java.util.*;
 /**
  * Created by ivy on 2017/10/11.
  */
-public class PoemTypeCrawler {
+public class PoemTypeCrawlerByType {
 
-    private static final Logger LOG = Logger.getLogger(PoemTypeCrawler.class);
+    private static final Logger LOG = Logger.getLogger(PoemTypeCrawlerByType.class);
+
+    private static Integer httpPort = 8888;
 
     //public static final String poetPic = "/Users/ivy/poetPic/";
     public static final String poetPic = "D:/poetPic/";
 
+    private static boolean flag = true;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)throws Exception {
+        LOG.info("************** howdo server start *****************");
+        //Configurations.init();
+        JettyServer.startJetty( httpPort );
+        DB_client.init_pool();
+        Thread.sleep(5000);
+        Thread.currentThread().join();
+        LOG.info("************** howdo server started *****************");
 
-
-
-        String url = "http://so.gushiwen.org/shiwen/tags.aspx";
-        //String url = "http://so.gushiwen.org/gushi/tangshi.aspx";
-        PoemTypeCrawler.poemTypeCrawlerHandler(url);
+        //String url = "http://so.gushiwen.org/shiwen/tags.aspx";
+        String url = "http://so.gushiwen.org/gushi/tangshi.aspx";
+        PoemTypeCrawlerByType.poemTypeCrawlerHandler(url);
     }
 
     //从诗歌右边的类型开始爬取
     public static void poemTypeCrawlerHandler(String url) {
         Crawler crawler = new Crawler();
         Document document = crawler.getHtmlTextByUrl(url);
-        Elements sright = document.getElementsByClass("bookcont");
-        Iterator<Element> iterator = sright.iterator();
-        while (iterator.hasNext()) {
-            Element next = iterator.next();
-            List<Node> nodes = next.childNodes();
-            for (Node node : nodes) {
-                List<Node> nodes1 = node.childNodes();
-                if (nodes1 == null) {
-                    continue;
-                } else {
-                    for (Node aTag : nodes1) {
-                        String href = aTag.attr("href");
-                        String type = ((Element) aTag).text();
-                        System.out.println("********" + type + "   " + href);
-                        poemType1CrawlerHandler(type, href);
-                        if (type.equals("深秋")) {
-                            System.out.println("===================完成 深秋==================");
-                        }
-                    }
-                }
+        Elements right = document.getElementsByClass("right");
+        Element cont = right.get(1).children().get(0).getElementsByClass("cont").get(0);
+        Elements aTags = cont.getElementsByTag("a");
+        for (Element aTag : aTags) {
+            String href = aTag.attr("href");
+            String type = aTag.text();
+            System.out.println("********" + type + "   " + href);
+            poemType1CrawlerHandler(type, "http://so.gushiwen.org/"+href);
+            if (type.equals("更多>>")) {
+                System.out.println("===================完成 更多>>==================");
             }
         }
     }
@@ -81,7 +81,8 @@ public class PoemTypeCrawler {
                     String poemName = ((Element) poemAtag).text();
                     System.out.println(poemName + "   " + href);
                     //根据链接爬诗歌
-                    crawlPoemByHref(href, type, type1);
+                    PoemCrawl poemCrawl = crawlPoemByHref(href, type, type1);
+                    System.out.println(poemCrawl.toJson());
                     if (type.equals("深秋")) {
                         System.out.println("===================完成 深秋==================");
                     }
@@ -108,7 +109,7 @@ public class PoemTypeCrawler {
             System.out.println("page info :index=" + index + " total=" + total + " totalPages=" + totalPages);
             int cnt_page = 10;
             while (cnt_page < totalPages) {
-                cnt_page ++;
+                cnt_page++;
                 String onePageUrl = "http://so.gushiwen.org/type.aspx?p=" + cnt_page + "&t=" + type;
                 List<PoemCrawl> poemCrawls = crawlOnePage(onePageUrl, type);
                 pringPoemList(poemCrawls, cnt_page);
@@ -123,7 +124,7 @@ public class PoemTypeCrawler {
         int cont = 0;
         for (PoemCrawl poemCrawl : list) {
             cont++;
-            System.out.println("第" + pageNum + "页,第" + cont + "首"+" "+poemCrawl.getTitle());
+            System.out.println("第" + pageNum + "页,第" + cont + "首" + " " + poemCrawl.getTitle());
             System.out.println(poemCrawl.toJson());
         }
     }
@@ -173,13 +174,13 @@ public class PoemTypeCrawler {
 
             if (sonsDiv.attr("class") != null && sonsDiv.attr("class").equals("sonspic")) {//诗人介绍
 
-                if (sonsDiv.getElementsByClass("cont").get(0).getElementsByClass("divimg").size()>0){
+                if (sonsDiv.getElementsByClass("cont").get(0).getElementsByClass("divimg").size() > 0) {
                     String poetUrl = sonsDiv.getElementsByClass("cont").get(0).getElementsByClass("divimg").get(0).getElementsByTag("a").get(0).attr("href");
                     //PoetCrawl poet = poet(sonsDiv, poemCrawl);//图片 名字 简介
-                    PoetCrawl poet = PoetCrawler.poetCrawl("http://so.gushiwen.org/"+poetUrl, poemCrawl.getChaodai(), poemCrawl.getZuozhe());
+                    PoetCrawl poet = PoetCrawler.poetCrawl("http://so.gushiwen.org/" + poetUrl, poemCrawl.getChaodai(), poemCrawl.getZuozhe());
                     poemCrawl.setPoetCrawl(poet);
-                }else{
-                    System.out.println(poemCrawl.getZuozhe()+"无图片");
+                } else {
+                    System.out.println(poemCrawl.getZuozhe() + "无图片");
                 }
 
             }
@@ -385,17 +386,17 @@ public class PoemTypeCrawler {
             if (children.attr("class").equals("cankao")) { // 标签
                 StringBuffer cankaoContent = new StringBuffer();
                 Elements cankaoChildren = children.getAllElements();
-                for (Element e : cankaoChildren){
-                    if (e.tagName().equals("p")){
+                for (Element e : cankaoChildren) {
+                    if (e.tagName().equals("p")) {
                         cankaoContent.append(e.text());
                     }
                     if (e.tagName().equals("span")) {
                         cankaoContent.append(e.text());
                     }
-                    if (e.tagName().equals("div")){
-                        for (Element span: e.getAllElements()){
-                            if (span.tagName().equals("p")){
-                                cankaoContent.append(span.text().replace("站务邮箱：service@gushiwen.org",""));
+                    if (e.tagName().equals("div")) {
+                        for (Element span : e.getAllElements()) {
+                            if (span.tagName().equals("p")) {
+                                cankaoContent.append(span.text().replace("站务邮箱：service@gushiwen.org", ""));
                             }
                             if (span.tagName().equals("span")) {
                                 cankaoContent.append(span.text());

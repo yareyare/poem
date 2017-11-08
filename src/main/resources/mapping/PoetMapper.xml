@@ -14,6 +14,16 @@
   <sql id="Base_Column_List">
     id, name, dynasty_id, status, delete_flag, data_version, create_date, update_date
   </sql>
+
+  <select id="selectByNameAndDynastyId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from poet
+    where `name` = #{name,jdbcType=INTEGER}
+    and dynasty_id = #{dynastyId,jdbcType=INTEGER}
+    and status = 1
+    and delete_flag = 0
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

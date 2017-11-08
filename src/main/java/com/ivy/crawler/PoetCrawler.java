@@ -90,7 +90,7 @@ public class PoetCrawler {
                 }
                 if (content != null && content.length()>0) {
                     content = content.replace("▲", "");
-                    content = content.substring(content.indexOf(" "),content.length());
+                    content = content.substring(content.indexOf(" ") == -1 ? 0 : content.indexOf(" "),content.length());
                 }
                 poetDetail.setPoetId(poet.getId());
                 poetDetail.setType(type);
