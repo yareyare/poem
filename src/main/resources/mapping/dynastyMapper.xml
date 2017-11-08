@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ivy.dao.dynastyMapper">
-  <resultMap id="BaseResultMap" type="com.ivy.model.po.dynasty">
+<mapper namespace="com.ivy.dao.DynastyMapper">
+  <resultMap id="BaseResultMap" type="com.ivy.model.po.Dynasty">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -23,7 +23,7 @@
     delete from dynasty
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ivy.model.po.dynasty">
+  <insert id="insert" parameterType="com.ivy.model.po.Dynasty">
     insert into dynasty (id, name, status, 
       delete_flag, data_version, create_date, 
       update_date)
@@ -31,7 +31,7 @@
       #{deleteFlag,jdbcType=INTEGER}, #{dataVersion,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ivy.model.po.dynasty">
+  <insert id="insertSelective" parameterType="com.ivy.model.po.Dynasty">
     insert into dynasty
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ivy.model.po.dynasty">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ivy.model.po.Dynasty">
     update dynasty
     <set>
       <if test="name != null">
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.dynasty">
+  <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.Dynasty">
     update dynasty
     set name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
