@@ -2,7 +2,7 @@ package com.ivy.dao;
 
 import com.ivy.model.po.Dynasty;
 
-public interface DynastyMapper1 {
+public interface DynastyMapper {
 
     int insert(Dynasty record);
 
