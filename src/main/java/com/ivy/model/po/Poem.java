@@ -10,7 +10,7 @@ public class Poem {
 
     private String title;
 
-    private String dynastyId;
+    private Integer dynastyId;
 
     private String types;
 
@@ -50,12 +50,12 @@ public class Poem {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getDynastyId() {
+    public Integer getDynastyId() {
         return dynastyId;
     }
 
-    public void setDynastyId(String dynastyId) {
-        this.dynastyId = dynastyId == null ? null : dynastyId.trim();
+    public void setDynastyId(Integer dynastyId) {
+        this.dynastyId = dynastyId;
     }
 
     public String getTypes() {

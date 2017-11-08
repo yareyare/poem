@@ -10,6 +10,8 @@ public interface PoemTypeMapper {
 
     PoemType selectByPrimaryKey(Integer id);
 
+    PoemType selectByTypeAndType1(String type,String type1);
+
     int updateByPrimaryKeySelective(PoemType record);
 
     int updateByPrimaryKey(PoemType record);

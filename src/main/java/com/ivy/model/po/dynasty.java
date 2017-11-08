@@ -3,6 +3,7 @@ package com.ivy.model.po;
 import java.util.Date;
 
 public class Dynasty {
+
     private Integer id;
 
     private String name;

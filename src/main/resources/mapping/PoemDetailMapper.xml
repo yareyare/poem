@@ -22,6 +22,17 @@
   <sql id="Blob_Column_List">
     content, reference
   </sql>
+
+
+  <select id="selectList" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from poem_detail
+    where poem_id = #{poemId,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />

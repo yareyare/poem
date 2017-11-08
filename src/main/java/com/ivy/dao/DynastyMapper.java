@@ -10,6 +10,8 @@ public interface DynastyMapper {
 
     Dynasty selectByPrimaryKey(Integer id);
 
+    Dynasty selectByDynastyName(String name);
+
     int updateByPrimaryKeySelective(Dynasty record);
 
     int updateByPrimaryKey(Dynasty record);

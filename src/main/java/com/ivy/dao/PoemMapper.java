@@ -10,6 +10,8 @@ public interface PoemMapper {
 
     Poem selectByPrimaryKey(Integer id);
 
+    Poem selectByTitleDynastyAuthor(String title,Integer dynasty ,Integer author);
+
     int updateByPrimaryKeySelective(Poem record);
 
     int updateByPrimaryKey(Poem record);
