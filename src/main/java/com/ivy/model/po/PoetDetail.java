@@ -2,10 +2,11 @@ package com.ivy.model.po;
 
 import java.util.Date;
 
-public class PoemDetail {
+public class PoetDetail {
+
     private Integer id;
 
-    private Integer poemId;
+    private Integer poetId;
 
     private Integer type;
 
@@ -33,12 +34,12 @@ public class PoemDetail {
         this.id = id;
     }
 
-    public Integer getPoemId() {
-        return poemId;
+    public Integer getPoetId() {
+        return poetId;
     }
 
-    public void setPoemId(Integer poemId) {
-        this.poemId = poemId;
+    public void setPoetId(Integer poetId) {
+        this.poetId = poetId;
     }
 
     public Integer getType() {

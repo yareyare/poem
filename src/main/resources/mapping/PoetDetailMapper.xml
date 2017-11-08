@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ivy.dao.PoemDetailMapper">
-    <resultMap id="BaseResultMap" type="com.ivy.model.po.PoemDetail">
+<mapper namespace="com.ivy.dao.PoetDetailMapper">
+    <resultMap id="BaseResultMap" type="com.ivy.model.po.PoetDetail">
         <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="poem_id" jdbcType="INTEGER" property="poemId"/>
+        <result column="poet_id" jdbcType="INTEGER" property="poetId"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="sort" jdbcType="INTEGER" property="sort"/>
         <result column="content" jdbcType="LONGVARCHAR" property="content"/>
@@ -15,47 +15,46 @@
         <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, poem_id, type, sort, content, reference , status, delete_flag, data_version, create_date, update_date
+    id, poet_id, type, sort,content, reference, status, delete_flag, data_version, create_date, update_date
   </sql>
-
 
     <select id="selectList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from poem_detail
-        where poem_id = #{poemId,jdbcType=INTEGER}
+        from poet_detail
+        where poet_id = #{poetId,jdbcType=INTEGER}
     </select>
+
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from poem_detail
+        from poet_detail
         where id = #{id,jdbcType=INTEGER}
     </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from poem_detail
+    delete from poet_detail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.ivy.model.po.PoemDetail">
-    insert into poem_detail (id, poem_id, type, 
+    <insert id="insert" parameterType="com.ivy.model.po.PoetDetail">
+    insert into poet_detail (id, poet_id, type, 
       sort, status, delete_flag, 
       data_version, create_date, update_date, 
       content, reference)
-    values (#{id,jdbcType=INTEGER}, #{poemId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{poetId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
       #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{deleteFlag,jdbcType=INTEGER}, 
       #{dataVersion,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
       #{content,jdbcType=LONGVARCHAR}, #{reference,jdbcType=LONGVARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.ivy.model.po.PoemDetail">
-        insert into poem_detail
+    <insert id="insertSelective" parameterType="com.ivy.model.po.PoetDetail">
+        insert into poet_detail
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
             </if>
-            <if test="poemId != null">
-                poem_id,
+            <if test="poetId != null">
+                poet_id,
             </if>
             <if test="type != null">
                 type,
@@ -89,8 +88,8 @@
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
-            <if test="poemId != null">
-                #{poemId,jdbcType=INTEGER},
+            <if test="poetId != null">
+                #{poetId,jdbcType=INTEGER},
             </if>
             <if test="type != null">
                 #{type,jdbcType=INTEGER},
@@ -121,11 +120,11 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ivy.model.po.PoemDetail">
-        update poem_detail
+    <update id="updateByPrimaryKeySelective" parameterType="com.ivy.model.po.PoetDetail">
+        update poet_detail
         <set>
-            <if test="poemId != null">
-                poem_id = #{poemId,jdbcType=INTEGER},
+            <if test="poetId != null">
+                poet_id = #{poetId,jdbcType=INTEGER},
             </if>
             <if test="type != null">
                 type = #{type,jdbcType=INTEGER},
@@ -157,9 +156,9 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ivy.model.po.PoemDetail">
-    update poem_detail
-    set poem_id = #{poemId,jdbcType=INTEGER},
+    <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.PoetDetail">
+    update poet_detail
+    set poet_id = #{poetId,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},
       sort = #{sort,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
@@ -169,18 +168,6 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR},
       reference = #{reference,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-    <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.PoemDetail">
-    update poem_detail
-    set poem_id = #{poemId,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
-      sort = #{sort,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      delete_flag = #{deleteFlag,jdbcType=INTEGER},
-      data_version = #{dataVersion,jdbcType=INTEGER},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

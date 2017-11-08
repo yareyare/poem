@@ -2,7 +2,7 @@ package com.ivy.model.po;
 
 import java.util.Date;
 
-public class Dynasty {
+public class Dynasty1 {
 
     private Integer id;
 

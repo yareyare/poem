@@ -32,7 +32,7 @@ public class PoemTypeCrawlerByType {
         LOG.info("************** howdo server start *****************");
         //Configurations.init();
         JettyServer.startJetty( httpPort );
-        DB_client.init_pool();
+        //DB_client.init_pool();
         Thread.sleep(5000);
         Thread.currentThread().join();
         LOG.info("************** howdo server started *****************");

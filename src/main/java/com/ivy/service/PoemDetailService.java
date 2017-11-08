@@ -2,7 +2,6 @@ package com.ivy.service;
 
 import com.ivy.core.model.BaseException;
 import com.ivy.model.po.PoemDetail;
-import com.ivy.model.po.PoemDetailWithBLOBs;
 
 import java.util.List;
 
@@ -11,9 +10,9 @@ import java.util.List;
  */
 public interface PoemDetailService {
 
-    int saveList(List<PoemDetailWithBLOBs> list) throws BaseException;
+    int saveList(List<PoemDetail> list) throws BaseException;
 
-    int save(PoemDetailWithBLOBs poemDetail) throws BaseException;
+    int save(PoemDetail poemDetail) throws BaseException;
 
-    List<PoemDetailWithBLOBs> getList(Integer poemId) throws BaseException;
+    List<PoemDetail> getList(Integer poemId) throws BaseException;
 }

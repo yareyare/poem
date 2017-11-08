@@ -2,9 +2,7 @@ package com.ivy.serviceImpl;
 
 import com.ivy.core.model.BaseException;
 import com.ivy.dao.PoemDetailMapper;
-import com.ivy.dao.PoemMapper;
 import com.ivy.model.po.PoemDetail;
-import com.ivy.model.po.PoemDetailWithBLOBs;
 import com.ivy.service.PoemDetailService;
 import com.ivy.tool.Code;
 import org.apache.log4j.Logger;
@@ -26,10 +24,10 @@ public class PoemDetailServiceImpl implements PoemDetailService {
     private PoemDetailMapper poemDetailMapper;
 
     @Override
-    public int saveList(List<PoemDetailWithBLOBs> list) throws BaseException {
+    public int saveList(List<PoemDetail> list) throws BaseException {
         int retCnt = 0;
         try {
-            for (PoemDetailWithBLOBs poemDetailWithBLOBs : list){
+            for (PoemDetail poemDetailWithBLOBs : list){
                 int ret = save(poemDetailWithBLOBs);
                 retCnt += ret;
             }
@@ -40,7 +38,7 @@ public class PoemDetailServiceImpl implements PoemDetailService {
     }
 
     @Override
-    public int save(PoemDetailWithBLOBs poemDetail) throws BaseException {
+    public int save(PoemDetail poemDetail) throws BaseException {
         try {
             int i = poemDetailMapper.insertSelective(poemDetail);
             return i;
@@ -51,9 +49,9 @@ public class PoemDetailServiceImpl implements PoemDetailService {
     }
 
     @Override
-    public List<PoemDetailWithBLOBs> getList(Integer poemId) throws BaseException {
+    public List<PoemDetail> getList(Integer poemId) throws BaseException {
         try {
-            List<PoemDetailWithBLOBs> poemDetailWithBLOBses = poemDetailMapper.selectList(poemId);
+            List<PoemDetail> poemDetailWithBLOBses = poemDetailMapper.selectList(poemId);
             return poemDetailWithBLOBses;
         } catch (Exception e) {
             LOG.error("【PoemDetailServiceImpl.save】",e);
