@@ -50,9 +50,20 @@ public enum Code {
     // 50000 流程控制错误
     OVER_LIMIT(500100, "接口调用次数超过限制"),
 
+    // 60000
+    SAVE_DYNASTY_ERROR(600001,"朝代保存失败"),
+    SAVE_TYPE_ERROR(600002,"诗歌类型保存失败"),
+    SAVE_POEM_ERROR(600003,"诗歌保存失败"),
+    SAVE_TYPE_REF_ERROR(600002,"诗歌类型关联保存失败"),
+    SAVE_POEM_DETAIL_ERROR(600004,"诗歌详情保存失败"),
+    SAVE_POET_ERROR(600005,"诗人保存失败"),
+    SAVE_POET_DETAIL_ERROR(600004,"诗人详情保存失败"),
+
     // 90000 业务错误
     // 90100 用户联系人业务错误
-    CONTACTS_ISEXIST(90100, "该联系人已经存在");
+    CONTACTS_ISEXIST(90100, "该联系人已经存在"),
+
+    ;
 
     public String note;
     public Integer code;

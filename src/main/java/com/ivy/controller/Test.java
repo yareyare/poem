@@ -2,7 +2,6 @@ package com.ivy.controller;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.ivy.dao.PoetriesMapper;
@@ -13,7 +12,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ivy.dao.UsersMapper;
 import com.ivy.model.po.Users;
-import com.ivy.model.bo.PoetryBO;
 
 //@RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
 //@ContextConfiguration(locations = {"classpath:spring-mvc-servlet.xml"})  

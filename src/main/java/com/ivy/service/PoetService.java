@@ -1,6 +1,6 @@
 package com.ivy.service;
 
-import com.ivy.core.model.BaseException;
+import com.ivy.model.BaseException;
 import com.ivy.model.po.Poet;
 
 /**
@@ -8,9 +8,9 @@ import com.ivy.model.po.Poet;
  */
 public interface PoetService {
 
-    boolean add (String name ,Integer dynastyId) throws BaseException;
+    Integer add (String name ,Integer dynastyId) throws BaseException;
 
-    boolean add (Poet poet) throws BaseException;
+    Integer add (Poet poet) throws BaseException;
 
     Poet getByNameAndDynastyId(String name,Integer DynastyId) throws BaseException;
 

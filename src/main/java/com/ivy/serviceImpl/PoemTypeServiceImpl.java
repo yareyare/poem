@@ -1,6 +1,6 @@
 package com.ivy.serviceImpl;
 
-import com.ivy.core.model.BaseException;
+import com.ivy.model.BaseException;
 import com.ivy.dao.PoemTypeMapper;
 import com.ivy.model.po.PoemType;
 import com.ivy.service.PoemTypeService;
@@ -40,6 +40,30 @@ public class PoemTypeServiceImpl implements PoemTypeService {
             int i = poemTypeMapper.insertSelective(poemType);
             if (i== 1){
                 result = get(type1, type2);
+                return result.getId();
+            }
+        } catch (BaseException e) {
+            LOG.error("【PoemTypeServiceImpl.save】",e);
+            throw new BaseException(Code.DB_ERROR);
+        }
+        return null;
+    }
+
+
+    @Override
+    public Integer save(PoemType poemType) throws BaseException {
+        if (poemType.getType() == null || "".equals(poemType.getType())){
+            throw new BaseException(Code.PARAM_NULL);
+        }
+
+        try {
+            PoemType result = get(poemType.getType(), poemType.getType1());
+            if (result != null){
+                return result.getId();
+            }
+            int i = poemTypeMapper.insertSelective(poemType);
+            if (i== 1){
+                result = get(poemType.getType(), poemType.getType1());
                 return result.getId();
             }
         } catch (BaseException e) {

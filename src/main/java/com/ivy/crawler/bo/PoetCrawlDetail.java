@@ -1,6 +1,6 @@
 package com.ivy.crawler.bo;
 
-import com.ivy.core.model.BaseObject;
+import com.ivy.model.BaseObject;
 
 /**
  * Created by admin on 2017/11/3.
@@ -12,16 +12,26 @@ public class PoetCrawlDetail extends BaseObject{
     private String type;    //详情类型
     private String content; //详情内容
     private String cankao;  //参考
+    private Integer sort;  //显示顺序
 
     public PoetCrawlDetail() {
     }
 
-    public PoetCrawlDetail(Integer id, Integer poetId, String type, String content, String cankao) {
+    public PoetCrawlDetail(Integer id, Integer poetId, String type, String content, String cankao, Integer sort) {
         this.id = id;
         this.poetId = poetId;
         this.type = type;
         this.content = content;
         this.cankao = cankao;
+        this.sort = sort;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public String getCankao() {

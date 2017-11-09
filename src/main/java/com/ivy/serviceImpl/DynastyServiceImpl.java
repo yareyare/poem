@@ -1,6 +1,6 @@
 package com.ivy.serviceImpl;
 
-import com.ivy.core.model.BaseException;
+import com.ivy.model.BaseException;
 import com.ivy.dao.DynastyMapper;
 import com.ivy.model.po.Dynasty;
 import com.ivy.service.DynastyService;
@@ -26,7 +26,8 @@ public class DynastyServiceImpl implements DynastyService {
         Integer id = null;
         try {
             dynastyMapper.insertSelective(dynasty);
-            Dynasty dynasty1 = dynastyMapper.selectByDynastyName(dynasty.getName());
+            String name = dynasty.getName();
+            Dynasty dynasty1 = dynastyMapper.selectByDynastyName(name);
             if (dynasty1 != null ){
                 id = dynasty1.getId();
             }

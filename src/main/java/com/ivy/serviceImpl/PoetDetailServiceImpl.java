@@ -1,6 +1,6 @@
 package com.ivy.serviceImpl;
 
-import com.ivy.core.model.BaseException;
+import com.ivy.model.BaseException;
 import com.ivy.dao.PoetDetailMapper;
 import com.ivy.model.po.PoetDetail;
 import com.ivy.service.PoetDetailService;
@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.WebFault;
 import java.util.List;
 
 /**

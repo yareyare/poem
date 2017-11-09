@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="com.ivy.model.po.PoetDetail">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="poet_id" jdbcType="INTEGER" property="poetId"/>
-        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
         <result column="sort" jdbcType="INTEGER" property="sort"/>
         <result column="content" jdbcType="LONGVARCHAR" property="content"/>
         <result column="reference" jdbcType="LONGVARCHAR" property="reference"/>
@@ -42,7 +42,7 @@
       sort, status, delete_flag, 
       data_version, create_date, update_date, 
       content, reference)
-    values (#{id,jdbcType=INTEGER}, #{poetId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{poetId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR},
       #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{deleteFlag,jdbcType=INTEGER}, 
       #{dataVersion,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
       #{content,jdbcType=LONGVARCHAR}, #{reference,jdbcType=LONGVARCHAR})
@@ -92,7 +92,7 @@
                 #{poetId,jdbcType=INTEGER},
             </if>
             <if test="type != null">
-                #{type,jdbcType=INTEGER},
+                #{type,jdbcType=VARCHAR},
             </if>
             <if test="sort != null">
                 #{sort,jdbcType=INTEGER},
@@ -127,7 +127,7 @@
                 poet_id = #{poetId,jdbcType=INTEGER},
             </if>
             <if test="type != null">
-                type = #{type,jdbcType=INTEGER},
+                type = #{type,jdbcType=VARCHAR},
             </if>
             <if test="sort != null">
                 sort = #{sort,jdbcType=INTEGER},
@@ -159,7 +159,7 @@
     <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.PoetDetail">
     update poet_detail
     set poet_id = #{poetId,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       delete_flag = #{deleteFlag,jdbcType=INTEGER},

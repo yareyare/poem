@@ -1,6 +1,6 @@
 package com.ivy.serviceImpl;
 
-import com.ivy.core.model.BaseException;
+import com.ivy.model.BaseException;
 import com.ivy.dao.PoemMapper;
 import com.ivy.model.po.Poem;
 import com.ivy.service.PoemService;

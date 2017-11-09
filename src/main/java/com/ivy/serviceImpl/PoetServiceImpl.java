@@ -1,6 +1,6 @@
 package com.ivy.serviceImpl;
 
-import com.ivy.core.model.BaseException;
+import com.ivy.model.BaseException;
 import com.ivy.dao.PoetMapper;
 import com.ivy.model.po.Poet;
 import com.ivy.service.PoetService;
@@ -24,13 +24,13 @@ public class PoetServiceImpl implements PoetService {
 
 
     @Override
-    public boolean add(String name, Integer dynastyId) throws BaseException {
+    public Integer add(String name, Integer dynastyId) throws BaseException {
         try {
             Poet poet = new Poet();
             poet.setCreateDate(new Date());
             poet.setDynastyId(dynastyId);
             poet.setName(name);
-            boolean ret = add(poet);
+            Integer ret = add(poet);
             return ret;
         } catch (BaseException e) {
             LOG.error("【PoetServiceImpl.add(name,dynastyId)】",e);
@@ -39,17 +39,18 @@ public class PoetServiceImpl implements PoetService {
     }
 
     @Override
-    public boolean add(Poet poet) throws BaseException {
+    public Integer add(Poet poet) throws BaseException {
         try {
             int i = poetMapper.insertSelective(poet);
             if (i == 1){
-                return true;
+                Poet retPoet = poetMapper.selectByNameAndDynastyId(poet.getName(), poet.getDynastyId());
+                return retPoet.getId();
             }
         } catch (Exception e) {
             LOG.error("【PoetServiceImpl.add(poet)】",e);
             throw new BaseException(Code.DB_ERROR);
         }
-        return false;
+        return null;
     }
 
     @Override

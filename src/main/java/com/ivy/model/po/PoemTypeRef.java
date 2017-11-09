@@ -3,6 +3,7 @@ package com.ivy.model.po;
 import java.util.Date;
 
 public class PoemTypeRef {
+
     private Integer id;
 
     private Integer poemId;

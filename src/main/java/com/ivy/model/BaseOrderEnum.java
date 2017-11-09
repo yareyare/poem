@@ -1,4 +1,4 @@
-package com.ivy.core.model;
+package com.ivy.model;
 
 /**
  * Created by Emily on 2017/8/4.

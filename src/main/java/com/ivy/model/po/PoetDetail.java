@@ -8,7 +8,7 @@ public class PoetDetail {
 
     private Integer poetId;
 
-    private Integer type;
+    private String type;
 
     private Integer sort;
 
@@ -42,11 +42,11 @@ public class PoetDetail {
         this.poetId = poetId;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

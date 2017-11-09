@@ -130,7 +130,7 @@ public class JettyServer {
     //System.setProperty("org.eclipse.jetty.server.Request.maxFormContentSize","1000000000");
     //JettyWebApplicationInitializer.config_mvc("classpath:conf/spring_mvc.xml", "/*");
     JettyWebApplicationInitializer.config_mvc("classpath:spring-mvc-servlet.xml", "/*");
-    JettyServer.getInstance().start(port, "/how_do_api");
+    JettyServer.getInstance().start(port, "/poem");
   }
 
   public static void main(String[] args) throws Exception {

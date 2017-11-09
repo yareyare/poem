@@ -13,6 +13,14 @@
   <sql id="Base_Column_List">
     id, name, status, delete_flag, data_version, create_date, update_date
   </sql>
+
+  <select id="selectByDynastyName" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dynasty
+    where name = #{name,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

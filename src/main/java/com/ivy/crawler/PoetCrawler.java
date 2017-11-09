@@ -95,6 +95,7 @@ public class PoetCrawler {
                 poetDetail.setPoetId(poet.getId());
                 poetDetail.setType(type);
                 poetDetail.setContent(content);
+                poetDetail.setSort(sort);
 
             }
             if (div.attr("class").equals("cankao")) { // 标签

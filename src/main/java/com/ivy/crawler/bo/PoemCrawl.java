@@ -1,6 +1,6 @@
 package com.ivy.crawler.bo;
 
-import com.ivy.core.model.BaseObject;
+import com.ivy.model.BaseObject;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ivy.core.model;
+package com.ivy.model;
 
 /**
  * Created by ziqing.chen

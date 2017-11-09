@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.ivy.dao.CommentMapper;
 import com.ivy.exception.BaseException;
 import com.ivy.model.po.Comment;
 

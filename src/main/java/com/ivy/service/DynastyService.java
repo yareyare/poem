@@ -1,6 +1,6 @@
 package com.ivy.service;
 
-import com.ivy.core.model.BaseException;
+import com.ivy.model.BaseException;
 import com.ivy.model.po.Dynasty;
 
 /**
