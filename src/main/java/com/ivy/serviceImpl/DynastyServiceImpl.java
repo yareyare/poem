@@ -25,8 +25,14 @@ public class DynastyServiceImpl implements DynastyService {
     public Integer save(Dynasty dynasty) throws BaseException {
         Integer id = null;
         try {
-            dynastyMapper.insertSelective(dynasty);
             String name = dynasty.getName();
+            Dynasty checkDynastry = dynastyMapper.selectByDynastyName(name);
+            if (checkDynastry!=null){
+                id = checkDynastry.getId();
+                return  id;
+            }
+            dynastyMapper.insertSelective(dynasty);
+
             Dynasty dynasty1 = dynastyMapper.selectByDynastyName(name);
             if (dynasty1 != null ){
                 id = dynasty1.getId();
