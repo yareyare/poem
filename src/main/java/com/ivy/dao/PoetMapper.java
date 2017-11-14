@@ -2,6 +2,8 @@ package com.ivy.dao;
 
 import com.ivy.model.po.Poet;
 
+import java.util.Map;
+
 public interface PoetMapper {
 
     int insert(Poet record);
@@ -10,7 +12,7 @@ public interface PoetMapper {
 
     Poet selectByPrimaryKey(Integer id);
 
-    Poet selectByNameAndDynastyId(String name,Integer dynastyId);
+    Poet selectByNameAndDynastyId(Map<String,Object> param);
 
     int updateByPrimaryKeySelective(Poet record);
 

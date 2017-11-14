@@ -30,7 +30,7 @@
     ,
     <include refid="Blob_Column_List" />
     from poem
-    where title = #{title,jdbcType=INTEGER}
+    where title = #{title,jdbcType=VARCHAR}
     and dynasty_id = #{dynastyId,jdbcType=INTEGER}
     and poet_id = #{poetId,jdbcType=INTEGER}
   </select>

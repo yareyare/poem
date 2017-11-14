@@ -9,6 +9,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by admin on 2017/11/8.
  */
@@ -47,7 +50,11 @@ public class PoemServiceImpl implements PoemService {
     public Poem getByTitleAndDynastyAndAuthor(String title, Integer dynastyId, Integer poetId) throws BaseException {
         Poem poem = null;
         try {
-            poem = poemMapper.selectByTitleDynastyAuthor(title, dynastyId, poetId);
+            Map<String,Object> param = new HashMap<>();
+            param.put("title",title);
+            param.put("dynastyId",dynastyId);
+            param.put("poetId",poetId);
+            poem = poemMapper.selectByTitleDynastyAuthor(param);
         } catch (Exception e) {
             LOG.error("【PoemServiceImpl.getByTitleAndDynastyAndAuthor】", e);
             throw new BaseException(Code.DB_ERROR);

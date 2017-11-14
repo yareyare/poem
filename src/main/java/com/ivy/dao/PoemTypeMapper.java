@@ -2,6 +2,8 @@ package com.ivy.dao;
 
 import com.ivy.model.po.PoemType;
 
+import java.util.Map;
+
 public interface PoemTypeMapper {
 
     int insert(PoemType record);
@@ -10,7 +12,7 @@ public interface PoemTypeMapper {
 
     PoemType selectByPrimaryKey(Integer id);
 
-    PoemType selectByTypeAndType1(String type,String type1);
+    PoemType selectByTypeAndType1(Map<String,String> param);
 
     int updateByPrimaryKeySelective(PoemType record);
 

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by admin on 2017/11/8.
@@ -55,15 +57,10 @@ public class PoemTypeServiceImpl implements PoemTypeService {
         if (poemType.getType() == null || "".equals(poemType.getType())){
             throw new BaseException(Code.PARAM_NULL);
         }
-
         try {
-            PoemType result = get(poemType.getType(), poemType.getType1());
-            if (result != null){
-                return result.getId();
-            }
             int i = poemTypeMapper.insertSelective(poemType);
             if (i== 1){
-                result = get(poemType.getType(), poemType.getType1());
+                PoemType result = get(poemType.getType(), poemType.getType1());
                 return result.getId();
             }
         } catch (BaseException e) {
@@ -77,8 +74,12 @@ public class PoemTypeServiceImpl implements PoemTypeService {
     public PoemType get(String type1, String type2) throws BaseException {
         PoemType poemType = null;
         try {
-             poemType = poemTypeMapper.selectByTypeAndType1(type1, type2);
+            Map<String,String > param = new HashMap<>();
+            param.put("type1",type1);
+            param.put("type2",type2);
+             poemType = poemTypeMapper.selectByTypeAndType1(param);
         } catch (Exception e) {
+            LOG.error("根据大类小类查询类型失败",e);
             throw new BaseException(Code.DB_ERROR);
         }
         return poemType;

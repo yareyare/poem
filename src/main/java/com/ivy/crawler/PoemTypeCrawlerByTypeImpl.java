@@ -68,23 +68,25 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
                 System.out.println("================================" + type1);
                 Elements poemNameAtags = next.getElementsByTag("a");
 
+                int i = 0;
                 for (Node poemAtag : poemNameAtags) {
+                    i++;
+                    if (i%50 == 0){      try { System.out.println("sleep(10)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");  Thread.sleep(10);    } catch (InterruptedException e) {  e.printStackTrace();     }}
                     String href = poemAtag.attr("href");
                     String poemName = ((Element) poemAtag).text();
                     System.out.println(poemName + "   " + href);
                     //根据链接爬诗歌
                     PoemCrawl poemCrawl = crawlPoemByHref(href, type, type1);
-                    ThreadPool.POOL.execute(new Runnable() {
-                        @Override
-                        public void run() {
+//                    ThreadPool.POOL.execute(new Runnable() {
+//                        @Override
+//                        public void run() {
                             Return ret = savePoemService.save(poemCrawl);
                             if ((Integer) ret.get("code") != 10200) {
-                                LOG.error(poemCrawl.getTitle() + " 入库错误 " + ret.get_code() + ":" + ret.get_note());
-                                LOG.error(poemCrawl.getTitle());
+                                LOG.error("**********"+poemCrawl.getTitle() + " 入库错误 " + ret.get_code() + ":" + ret.get_note());
                             }
 
-                        }
-                    });
+//                        }
+//                    });
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {

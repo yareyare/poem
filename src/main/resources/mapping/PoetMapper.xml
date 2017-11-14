@@ -15,7 +15,7 @@
     id, name, dynasty_id, status, delete_flag, data_version, create_date, update_date
   </sql>
 
-  <select id="selectByNameAndDynastyId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByNameAndDynastyId" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from poet

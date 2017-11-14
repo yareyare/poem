@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by admin on 2017/11/8.
@@ -43,7 +45,10 @@ public class PoetServiceImpl implements PoetService {
         try {
             int i = poetMapper.insertSelective(poet);
             if (i == 1){
-                Poet retPoet = poetMapper.selectByNameAndDynastyId(poet.getName(), poet.getDynastyId());
+                Map<String,Object> param = new HashMap<>();
+                param.put("name",poet.getName());
+                param.put("dynastyId",poet.getDynastyId());
+                Poet retPoet = poetMapper.selectByNameAndDynastyId(param);
                 return retPoet.getId();
             }
         } catch (Exception e) {
@@ -56,7 +61,10 @@ public class PoetServiceImpl implements PoetService {
     @Override
     public Poet getByNameAndDynastyId(String name, Integer dynastyId) throws BaseException {
         try {
-            Poet poet = poetMapper.selectByNameAndDynastyId(name, dynastyId);
+            Map<String,Object> param = new HashMap<>();
+            param.put("name",name);
+            param.put("dynastyId",dynastyId);
+            Poet poet = poetMapper.selectByNameAndDynastyId(param);
             return poet;
         } catch (Exception e) {
             LOG.error("【PoetServiceImpl.getByNameAndDynastyId】",e);

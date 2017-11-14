@@ -14,6 +14,13 @@
   <sql id="Base_Column_List">
     id, poem_id, poem_type_id, status, delete_flag, data_version, create_date, update_date
   </sql>
+  <select id="selectByParam" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from poem_type_ref
+    where poem_id = #{poemId,jdbcType=INTEGER}
+    and poem_type_id = #{typeId,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
