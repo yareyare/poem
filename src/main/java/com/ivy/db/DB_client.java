@@ -17,7 +17,7 @@ public class DB_client {
 
     private static SqlSessionFactory sessionFactory = null;
     public static SqlSessionFactory init_pool() {
-        String resource = "conf/mybatis-config.xml";
+        String resource = "mybatis-config.xml";
         try{
             InputStream inputStream = Resources.getResourceAsStream(resource);
             sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);

@@ -4,37 +4,35 @@ package com.ivy.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ivy.dao.PoetriesMapper;
+import com.ivy.dao.UserMapper;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ivy.dao.UsersMapper;
-import com.ivy.model.po.Users;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 //@RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
 //@ContextConfiguration(locations = {"classpath:spring-mvc-servlet.xml"})  
-  
+@RestController
+@RequestMapping(value="rrr")
 public class Test {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	/**
      * @param args
 	 * @throws Exception 
      */
+
 	
-	@Autowired
-    PoetriesMapper poetriesMapper;
-	
-	@Autowired
-	static UsersMapper usersDao;
+//	@Autowired
+//	private UsersMapper usersDao;
 	
 //	@org.junit.Test
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx=null;
         ctx=new ClassPathXmlApplicationContext("spring-mvc-servlet.xml");
-        PoetriesMapper poetryDao= (PoetriesMapper) ctx.getBean("poetryDao");
-        UsersMapper userDao= (UsersMapper) ctx.getBean("userDao");
+
+        UserMapper userDao= (UserMapper) ctx.getBean("userDao");
 //        User user=new User();
         //添加两条数据
 //        user.setId("1");
@@ -55,7 +53,7 @@ public class Test {
         Map<String,String> map = new HashMap<String,String>();
         map.put("phone", "15601719880");
         map.put("password", "123");
-        Users user = usersDao.selectUserByParams(map);
-        System.out.println(user.getNickname()+"  "+user.getPhone());
+//        Users user = usersDao.selectUserByParams(map);
+//        System.out.println(user.getNickname()+"  "+user.getPhone());
     }
 }

@@ -1,17 +1,12 @@
 package com.ivy.crawler;
 
-import com.ivy.crawler.bo.PoemDetailCrawl;
 import com.ivy.crawler.bo.PoetCrawl;
 import com.ivy.crawler.bo.PoetCrawlDetail;
 import com.ivy.tool.DownLoadPicture;
 import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by ivy on 2017/11/5.

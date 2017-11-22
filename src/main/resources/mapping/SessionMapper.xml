@@ -3,32 +3,34 @@
 <mapper namespace="com.ivy.dao.SessionMapper">
   <resultMap id="BaseResultMap" type="com.ivy.model.po.Session">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="inValidTime" jdbcType="TIMESTAMP" property="invalidtime" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="data_version" jdbcType="INTEGER" property="dataVersion" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, status, inValidTime, createTime, updateTime
+    id, user_id, inValidTime, status, delete_flag, data_version, create_date, update_date
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from session
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from session
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.ivy.model.po.Session">
-    insert into session (id, user_id, status, 
-      inValidTime, createTime, updateTime
-      )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{invalidtime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
-      )
+    insert into session (id, user_id, inValidTime, 
+      status, delete_flag, data_version, 
+      create_date, update_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{invalidtime,jdbcType=TIMESTAMP},
+      #{status,jdbcType=INTEGER}, #{deleteFlag,jdbcType=INTEGER}, #{dataVersion,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ivy.model.po.Session">
     insert into session
@@ -39,17 +41,23 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="status != null">
-        status,
-      </if>
       <if test="invalidtime != null">
         inValidTime,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="status != null">
+        status,
       </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+      <if test="dataVersion != null">
+        data_version,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -59,17 +67,23 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
       <if test="invalidtime != null">
         #{invalidtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="dataVersion != null">
+        #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -79,57 +93,36 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
       <if test="invalidtime != null">
         inValidTime = #{invalidtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="dataVersion != null">
+        data_version = #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.Session">
     update session
     set user_id = #{userId,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
       inValidTime = #{invalidtime,jdbcType=TIMESTAMP},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
+      status = #{status,jdbcType=INTEGER},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      data_version = #{dataVersion,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  
-  
-  <select id="validateSession" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from Session
-    where id = #{id,jdbcType=VARCHAR}
-    and inValidTime > current_time
-    and status = 1
-    and createTime >= now()-interval 30 day
-  </select>
-
-  <select id="selectByUserid" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from Session
-    where user_id = #{userId,jdbcType=INTEGER}
-    and inValidTime > current_time
-    and status = 1
-  </select>
-  
-  <insert id="insertAndGetId" keyProperty="id" parameterType="com.ivy.model.po.Session">
-    insert into Session (id, user_id, status,
-    inValidTime, createTime, updateTime
-    )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
-    #{invalidtime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
-    )
-  </insert>
 </mapper>

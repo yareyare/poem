@@ -3,11 +3,18 @@ package com.ivy.serviceImpl;
 import com.ivy.model.BaseException;
 import com.ivy.dao.PoemMapper;
 import com.ivy.model.po.Poem;
+import com.ivy.model.vo.PoemVO;
+import com.ivy.service.PoemDetailService;
 import com.ivy.service.PoemService;
 import com.ivy.tool.Code;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by admin on 2017/11/8.
@@ -19,6 +26,9 @@ public class PoemServiceImpl implements PoemService {
 
     @Autowired
     private PoemMapper poemMapper;
+
+    @Autowired
+    private PoemDetailService poemDetailService;
 
     @Override
     public Integer save(Poem poem) throws BaseException {
@@ -36,7 +46,7 @@ public class PoemServiceImpl implements PoemService {
                     id = resultPoem.getId();
                 }
             }
-        } catch (BaseException e) {
+        } catch (Exception e) {
             LOG.error("【PoemServiceImpl.getByTitleAndDynastyAndAuthor】", e);
             throw new BaseException(Code.DB_ERROR);
         }
@@ -47,12 +57,41 @@ public class PoemServiceImpl implements PoemService {
     public Poem getByTitleAndDynastyAndAuthor(String title, Integer dynastyId, Integer poetId) throws BaseException {
         Poem poem = null;
         try {
-            poem = poemMapper.selectByTitleDynastyAuthor(title, dynastyId, poetId);
+            Map<String,Object> param = new HashMap<>();
+            param.put("title",title);
+            param.put("dynastyId",dynastyId);
+            param.put("poetId",poetId);
+            poem = poemMapper.selectByTitleDynastyAuthor(param);
         } catch (Exception e) {
             LOG.error("【PoemServiceImpl.getByTitleAndDynastyAndAuthor】", e);
             throw new BaseException(Code.DB_ERROR);
         }
 
         return poem;
+    }
+
+    @Override
+    public List<PoemVO> getIndexPoem() throws BaseException {
+        List<PoemVO> poemList = new ArrayList<>();
+        try {
+            poemList = poemMapper.selectIndexPoem();
+        } catch (Exception e) {
+            LOG.error("【PoemServiceImpl.getIndexPoem】", e);
+            throw new BaseException(Code.DB_ERROR);
+        }
+
+        return poemList;
+    }
+
+    @Override
+    public PoemVO getById(Integer id) throws BaseException {
+        try {
+            PoemVO poem = poemMapper.selectById(id);
+            return poem;
+        } catch (Exception e) {
+            LOG.error("【PoemServiceImpl.getById】", e);
+            e.printStackTrace();
+        }
+        return null;
     }
 }

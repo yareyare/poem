@@ -10,9 +10,23 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
+  <resultMap id="VOResultMap" type="com.ivy.model.vo.DynastyVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, name, status, delete_flag, data_version, create_date, update_date
   </sql>
+  <sql id="VO_Column_List">
+    id, name
+  </sql>
+
+  <select id="selectAll" parameterType="java.lang.String" resultMap="VOResultMap">
+    select
+    <include refid="VO_Column_List" />
+    from dynasty
+    where status = 1 and delete_flag = 0
+  </select>
 
   <select id="selectByDynastyName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select

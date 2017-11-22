@@ -1,26 +1,23 @@
 package com.ivy.model.po;
 
+import com.ivy.model.BasePo;
+
 import java.util.Date;
 
-public class Session {
-    private Integer id;
+public class Session extends BasePo {
+
+    private String id;
 
     private Integer userId;
 
-    private Integer status;
-
     private Date invalidtime;
 
-    private Date createtime;
-
-    private Date updatetime;
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id == null ? null : id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public Integer getUserId() {
@@ -31,14 +28,6 @@ public class Session {
         this.userId = userId == null ? null : userId;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public Date getInvalidtime() {
         return invalidtime;
     }
@@ -47,19 +36,4 @@ public class Session {
         this.invalidtime = invalidtime;
     }
 
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
-    public Date getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
 }

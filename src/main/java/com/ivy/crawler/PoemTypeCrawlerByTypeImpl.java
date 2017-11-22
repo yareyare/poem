@@ -1,12 +1,13 @@
 package com.ivy.crawler;
 
+import com.ivy.Configurations;
 import com.ivy.crawler.bo.PoemCrawl;
 import com.ivy.crawler.bo.PoemDetailCrawl;
 import com.ivy.crawler.bo.PoetCrawl;
 import com.ivy.crawler.save.SavePoemService;
 import com.ivy.tool.DownLoadPicture;
+import com.ivy.tool.FileTool;
 import com.ivy.tool.Return;
-import com.ivy.tool.ThreadPool;
 import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -21,20 +22,18 @@ import java.util.*;
  * Created by ivy on 2017/10/11.
  */
 @Service
-public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
+public class PoemTypeCrawlerByTypeImpl implements PoemTypeCrawlerByType {
 
     private static final Logger LOG = Logger.getLogger(PoemTypeCrawlerByTypeImpl.class);
 
-    //public static final String poetPic = "/Users/ivy/poetPic/";
-    public static final String poetPic = "D:/poetPic/";
+    private static boolean begin = false;
 
-    private static boolean flag = true;
 
     @Autowired
     private SavePoemService savePoemService;
 
     //从诗歌右边的类型开始爬取
-    public void poemTypeCrawlerHandler(String url) {
+    public void poemTypeCrawlerHandler(String url,String id) {
         Crawler crawler = new Crawler();
         Document document = crawler.getHtmlTextByUrl(url);
         Elements right = document.getElementsByClass("right");
@@ -44,20 +43,18 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
             String href = aTag.attr("href");
             String type = aTag.text();
             System.out.println("********" + type + "   " + href);
-            poemType1CrawlerHandler(type, "http://so.gushiwen.org/" + href);
+            poemType1CrawlerHandler(type, "http://so.gushiwen.org/" + href,id);
             if (type.equals("更多>>")) {
                 System.out.println("===================完成 更多>>==================");
             }
         }
     }
 
-    public void poemType1CrawlerHandler(String type, String url) {
+    public void poemType1CrawlerHandler(String type, String url,String id) {
         Crawler crawler = new Crawler();
         Document type1Document = crawler.getHtmlTextByUrl(url);
-
         Elements main3 = type1Document.getElementsByClass("main3");
         Element leftElement = main3.get(0).getElementsByClass("left").get(0);
-
         //说明还有小分类 比如唐诗三百首
         if (leftElement.getElementsByClass("typecont") != null && leftElement.getElementsByClass("typecont").size() > 0) {
             System.out.println("======================" + type);
@@ -67,24 +64,38 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
                 String type1 = next.getElementsByTag("strong").text();
                 System.out.println("================================" + type1);
                 Elements poemNameAtags = next.getElementsByTag("a");
-
+                int i = 0;
                 for (Node poemAtag : poemNameAtags) {
+                    i++;
+                    if (i % 50 == 0) {
+                        try {
+                            System.out.println("sleep(10)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     String href = poemAtag.attr("href");
                     String poemName = ((Element) poemAtag).text();
                     System.out.println(poemName + "   " + href);
-                    //根据链接爬诗歌
-                    PoemCrawl poemCrawl = crawlPoemByHref(href, type, type1);
-                    ThreadPool.POOL.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            Return ret = savePoemService.save(poemCrawl);
-                            if ((Integer) ret.get("code") != 10200) {
-                                LOG.error(poemCrawl.getTitle() + " 入库错误 " + ret.get_code() + ":" + ret.get_note());
-                                LOG.error(poemCrawl.getTitle());
-                            }
 
-                        }
-                    });
+                    if (href.indexOf(id) > 0){
+                        begin = true;
+                    }
+                    if (!begin){
+                        continue;
+                    }
+                    if (poemName.indexOf("今佚")>0){
+                        continue;
+                    }
+                    //根据链接爬诗歌
+                    PoemCrawl poemCrawl = null;
+                    poemCrawl = crawlPoemByHref(href, type, type1);
+                    Return ret = savePoemService.save(poemCrawl);
+                    if ((Integer) ret.get("code") != 10200) {
+                        LOG.error("**********" + poemCrawl.getTitle() + " 入库错误 " + ret.get_code() + ":" + ret.get_note());
+                        FileTool.writeToFile(Configurations.logPath,poemCrawl.getTitle() + " 入库错误 " + ret.get_code() + ":" + ret.get_note());
+                    }
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
@@ -294,9 +305,9 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
                                 }
                             }
                             if (yiwenFlag) {
-                                yiwen = yiwen.concat(content);
+                                yiwen = yiwen.concat(content.substring(content.indexOf("译文")+2,content.length()));
                             } else {
-                                zhushi = zhushi.concat(content);
+                                zhushi = zhushi.concat(content.substring(content.indexOf("注释")+2,content.length()));
                             }
 
                         } catch (Exception e) {
@@ -312,14 +323,14 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
                         zhushi = zhushi.replace("▲", "");
                     }
                     otherCrawl = new PoemDetailCrawl();
-                    otherCrawl.setDetail(yiwen.replaceAll("</br>", "\n"));
+                    otherCrawl.setDetail(yiwen.replaceAll("</br>", "\\n"));
                     otherCrawl.setType("译文");
                     otherCrawl.setIndex(sort);
                     otherCrawlMap.put("译文", otherCrawl);
 //                  System.out.println(otherCrawl.toJson());
 
                     otherCrawl = new PoemDetailCrawl();
-                    otherCrawl.setDetail(zhushi.replaceAll("</br>", "\n"));
+                    otherCrawl.setDetail(zhushi.replaceAll("</br>", "\\n"));
                     otherCrawl.setType("注释");
                     otherCrawl.setIndex(sort);
                     otherCrawlMap.put("注释", otherCrawl);
@@ -335,7 +346,7 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
                     Elements span = cankaoItem.getElementsByTag("span");
                     if (span.size() > 0) {
                         String concat = span.get(0).text().concat(span.get(1).text());
-                        cankaoContent = cankaoContent.append(concat).append("\n");
+                        cankaoContent = cankaoContent.append(concat).append("\\n");
                     }
                 }
                 if (otherCrawlMap.get("译文") != null) {
@@ -372,7 +383,7 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
                 String content = "";
                 for (Element p : pTags) {
                     sort++;
-                    content = content.concat(p.text()).concat("\n");
+                    content = content.concat(p.text()).concat("\\n");
                 }
                 if (type != null && type.equals("成语")) {
                     children.removeClass("h2");
@@ -383,7 +394,7 @@ public class PoemTypeCrawlerByTypeImpl  implements PoemTypeCrawlerByType {
                     content = content.replace("▲", "");
                 }
                 try { //赏析 创作背景 等
-                    otherCrawl.setDetail(content.replaceAll("</br>", "\n"));
+                    otherCrawl.setDetail(content.replaceAll("</br>", "\\n"));
                     otherCrawl.setType(type);
                     otherCrawl.setIndex(sort);
                 } catch (Exception e) {

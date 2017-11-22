@@ -11,9 +11,42 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
+
+  <resultMap id="TypeResultMap" type="com.ivy.model.vo.TypeVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+
+  <resultMap id="SubTypeResultMap" type="com.ivy.model.vo.SubTypeVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="type1" jdbcType="VARCHAR" property="type1" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, type, type1, status, delete_flag, data_version, create_date, update_date
   </sql>
+
+  <select id="selectType" parameterType="java.util.Map" resultMap="TypeResultMap">
+    SELECT
+        id,type
+    FROM
+        poem.poem_type
+    where status = 1 and delete_flag = 0
+    GROUP BY type
+    ORDER BY id
+  </select>
+
+  <select id="selectSubType" parameterType="java.lang.String" resultMap="SubTypeResultMap">
+    SELECT
+        id,type,type1
+    FROM
+        poem.poem_type
+    where type = #{type,jdbcType=INTEGER}
+    and status = 1 and delete_flag = 0
+    ORDER BY id
+  </select>
+
   <select id="selectByTypeAndType1" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

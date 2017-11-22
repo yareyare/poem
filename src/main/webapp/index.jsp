@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://" +request.getServerName()+":" +reques
     <div class="row">
       
       <div class="col-md-8 blog-main" id="fill">
-		<!-- 动态填充到这里 --> 
+		<!-- 诗歌--动态填充到这里 -->
       </div>
       
       <aside class="col-md-4 blog-aside">
@@ -129,13 +129,14 @@ String basePath = request.getScheme()+"://" +request.getServerName()+":" +reques
           </div>
         </div>
 
+
         <div class="aside-widget">
-          <header>
-            <h3>Tags</h3>
+          <header><!-- 朝代--动态填充到这里 -->
+            <h3>朝代</h3>
           </header>
-          <div class="body clearfix">
+          <div class="body clearfix" id="dynasty">
             <ul class="tags">
-              <li><a href="#">HTML5</a></li>
+              <li><a href="">HTML5</a></li>
               <li><a href="#">CSS3</a></li>
               <li><a href="#">COMPONENTS</a></li>
               <li><a href="#">TEMPLATE</a></li>
@@ -146,6 +147,7 @@ String basePath = request.getScheme()+"://" +request.getServerName()+":" +reques
             </ul>
           </div>
         </div>
+
       </aside>
     </div>
   </div>
@@ -159,6 +161,7 @@ String basePath = request.getScheme()+"://" +request.getServerName()+":" +reques
 <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js" type="text/javascript"></script>
 <script language="javascript" for="window" event="onload">
 
+// 诗歌查询
 $.ajax({
     url:"http://127.0.0.1:8080/poem/index.do",
     type:'GET', //POST
@@ -179,26 +182,26 @@ $.ajax({
         console.log(jqXHR)
         if(data.code!=null && data.code==10200){
         	var list = data.list;
-        	
+
         	var divRow= $("<div class=\"row\"></div>");
         	$(list).each(function (index) {
                 var val = list[index];
                 //console.log(list[index]);
-		        
-                var contentdiv=$("<div class=\"body\">"+replaceBr(val.content)+"</div>"); 
-                var single=$('<div class="clearfix"><a href="single.jsp" class="btn btn-clean-one">Read more</a></div>'); 
-                var header = ("<header><img src=\"img/5.jpg\" alt=\"\"><h3><a href=\"single.jsp\">"+val.title+"</a></h3><span class=\"meta\">"+val.author+"</span><hr></header>");
-                var div = $("<div class=\"col-md-6 col-sm-6\"></div>");
-                
+
+                var contentdiv=$("<div class=\"body\"> <h3><a href=\"single.jsp\">"+val.title+"</a> </br></br> "+ replaceBr(val.content)+"</div>");
+                var single=$('<div class="clearfix"><a href="single.jsp" class="btn btn-clean-one">详情</a></div>');
+                var header = ("<div class=\"col-md-3 col-sm-3\" ><header><img src=\"poetPic/"+val.poemDynastyName+"_"+val.poetName+".jpg\" alt=\"\"></h3><span class=\"meta\">"+val.poetName+"</span><hr></header></div>");
+                var div = $("<div class=\"col-md-12 col-sm-12\"></div>");
+
                 var parent = $("<article class=\"blog-teaser\"></article>")
-                
+
                 parent.append(header);
                 parent.append(contentdiv);
                 parent.append(single);
-                
+
                 div.append(parent);
                 divRow.append(div)
-                
+
 				if(index%2 == 1){
 					$('#fill').append(divRow);
 					divRow= $("<div class=\"row\"></div>");
@@ -214,7 +217,66 @@ $.ajax({
     complete:function(){
         console.log('结束')
     }
-    
+
+})
+
+// 朝代查询
+$.ajax({
+    url:"http://127.0.0.1:8080/poem/index.do",
+    type:'GET', //POST
+    async:false,    //或false,是否异步
+    data:{
+        // name:'yang',age:25
+    },
+    timeout:0,    //超时时间
+    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+    beforeSend:function(xhr){
+        console.log(xhr)
+        console.log('发送前')
+    },
+    success:function(data,textStatus,jqXHR){
+        console.log(data)
+        console.log(data.note)
+        console.log(textStatus)
+        console.log(jqXHR)
+        if(data.code!=null && data.code==10200){
+            var list = data.list;
+
+            var divRow= $("<div class=\"row\"></div>");
+            $(list).each(function (index) {
+                var val = list[index];
+                //console.log(list[index]);
+
+                var contentdiv=$("<div class=\"body\"> <h3><a href=\"single.jsp\">"+val.title+"</a> </br></br> "+ replaceBr(val.content)+"</div>");
+                var single=$('<div class="clearfix"><a href="single.jsp" class="btn btn-clean-one">详情</a></div>');
+                var header = ("<div class=\"col-md-3 col-sm-3\" ><header><img src=\"poetPic/"+val.poemDynastyName+"_"+val.poetName+".jpg\" alt=\"\"></h3><span class=\"meta\">"+val.poetName+"</span><hr></header></div>");
+                var div = $("<div class=\"col-md-12 col-sm-12\"></div>");
+
+                var parent = $("<article class=\"blog-teaser\"></article>")
+
+                parent.append(header);
+                parent.append(contentdiv);
+                parent.append(single);
+
+                div.append(parent);
+                divRow.append(div)
+
+                if(index%2 == 1){
+                    $('#fill').append(divRow);
+                    divRow= $("<div class=\"row\"></div>");
+                }
+            });
+        }
+    },
+    error:function(xhr,textStatus){
+        console.log('错误')
+        console.log(xhr)
+        console.log(textStatus)
+    },
+    complete:function(){
+        console.log('结束')
+    }
+
 })
 </script>
 </body>

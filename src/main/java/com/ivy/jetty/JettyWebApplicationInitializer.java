@@ -41,6 +41,8 @@ public class JettyWebApplicationInitializer implements WebApplicationInitializer
 
     //指定配置文件
     public static void config_mvc(String mapping_path, String mapping_pattern) throws IOException {
+        System.out.println( "mapping path = " + mapping_path );
+        System.out.println( "mapping pattern = " + mapping_pattern );
       JettyWebApplicationInitializer.mapping_path = mapping_path;
       JettyWebApplicationInitializer.mapping_pattern = mapping_pattern == null ? "/*" : mapping_pattern;
       run(servletContext);

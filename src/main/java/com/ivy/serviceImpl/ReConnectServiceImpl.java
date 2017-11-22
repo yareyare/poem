@@ -1,6 +1,6 @@
 package com.ivy.serviceImpl;
 
-import com.ivy.daoImpl.ReConnectMapperImpl;
+import com.ivy.dao.ReConnectMapper;
 import com.ivy.service.ReConnectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class ReConnectServiceImpl implements ReConnectService {
 
     @Autowired
-    ReConnectMapperImpl reConnectMapperImpl;
+	private ReConnectMapper reConnectMapper;
 
 	public int reConnection() throws Exception {
-		return reConnectMapperImpl.reConnection();
+		return reConnectMapper.reConnection();
 	}
     
 }

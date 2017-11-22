@@ -3,6 +3,7 @@ package com.ivy.serviceImpl;
 import com.ivy.model.BaseException;
 import com.ivy.dao.PoetDetailMapper;
 import com.ivy.model.po.PoetDetail;
+import com.ivy.model.vo.PoetDetailVO;
 import com.ivy.service.PoetDetailService;
 import com.ivy.tool.Code;
 import org.apache.log4j.Logger;
@@ -43,13 +44,14 @@ public class PoetDetailServiceImpl implements PoetDetailService {
         }
     }
 
+
     @Override
-    public List<PoetDetail> getList(Integer poetId) throws BaseException {
+    public List<PoetDetailVO> getList(Integer poetId) throws BaseException {
         try {
-            List<PoetDetail> poetDetails = poetDetailMapper.selectList(poetId);
-            return poetDetails;
+            List<PoetDetailVO> poetDetailVOList = poetDetailMapper.selectList(poetId);
+            return poetDetailVOList;
         } catch (Exception e) {
-            LOG.error("【PoetDetailServiceImpl.getList】",e);
+            LOG.error("【PoetServiceImpl.getList】",e);
             throw new BaseException(Code.DB_ERROR);
         }
     }

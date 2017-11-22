@@ -14,16 +14,28 @@
         <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
         <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
     </resultMap>
+
+    <resultMap id="VOResultMap" type="com.ivy.model.vo.PoemDetailVO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="poem_id" jdbcType="INTEGER" property="poemId"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+        <result column="reference" jdbcType="LONGVARCHAR" property="reference"/>
+    </resultMap>
     <sql id="Base_Column_List">
     id, poem_id, type, sort, content, reference , status, delete_flag, data_version, create_date, update_date
-  </sql>
+    </sql>
+    <sql id="VO_Column_List">
+        id, poem_id, type, sort, content, reference
+    </sql>
 
 
-    <select id="selectList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectList" parameterType="java.lang.Integer" resultMap="VOResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="VO_Column_List"/>
         from poem_detail
-        where poem_id = #{poemId,jdbcType=INTEGER}
+        where poem_id = #{poemId,jdbcType=INTEGER} order by sort
     </select>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

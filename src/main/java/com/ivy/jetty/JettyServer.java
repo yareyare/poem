@@ -53,6 +53,7 @@ public class JettyServer {
     classpaths.add(NativePath.get_class_path(JettyServer.class));
     Thread t = new Thread(() -> {
       try {
+        System.out.println( "context = " + CONTEXT + ", webapp path = " + DEFAULT_WEBAPP_PATH );
         final Server server = createServerInSource(http_port, CONTEXT, DEFAULT_WEBAPP_PATH, DESCRIPTOR, classpaths.toArray(new String[] {}));
         server.start();
         server.join();

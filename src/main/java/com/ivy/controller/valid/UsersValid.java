@@ -1,6 +1,6 @@
 package com.ivy.controller.valid;
 
-import com.ivy.model.po.Users;
+import com.ivy.model.po.User;
 import com.ivy.model.bo.UsersLoginBO;
 import com.ivy.tool.Code;
 import com.ivy.tool.MatchEmail;
@@ -8,7 +8,7 @@ import com.ivy.tool.MatchIC;
 import com.ivy.tool.MatchPhone;
 
 public class UsersValid {
-	public static Code addValid(Users user){
+	public static Code addValid(User user){
 		if(user==null){
 			return Code.OBJECT_NULL;
 		}
@@ -35,7 +35,7 @@ public class UsersValid {
 		return null;
 	}
 	
-	public static Code modifyValid(Users user){
+	public static Code modifyValid(User user){
 		if(user==null){
 			return Code.OBJECT_NULL;
 		}

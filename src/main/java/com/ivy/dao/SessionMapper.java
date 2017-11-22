@@ -1,24 +1,17 @@
 package com.ivy.dao;
 
-import java.util.List;
-
 import com.ivy.model.po.Session;
 
 public interface SessionMapper {
-	
-    int insert(Session record) throws Exception;
+    int deleteByPrimaryKey(String id);
 
-    int insertSelective(Session record) throws Exception;
+    int insert(Session record);
 
-    Integer insertAndGetId(Session record) throws Exception;
+    int insertSelective(Session record);
 
-    Session selectByPrimaryKey(Integer id) throws Exception;
+    Session selectByPrimaryKey(String id);
 
-    Session validateSession(Integer id) throws Exception;
+    int updateByPrimaryKeySelective(Session record);
 
-    int updateByPrimaryKeySelective(Session record) throws Exception;
-
-    int updateByPrimaryKey(Session record) throws Exception;
-    
-    List<Session> getSessionByUserid(Integer uid) throws Exception;
+    int updateByPrimaryKey(Session record);
 }

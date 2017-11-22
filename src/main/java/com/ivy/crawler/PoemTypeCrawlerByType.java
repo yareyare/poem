@@ -5,5 +5,5 @@ package com.ivy.crawler;
  */
 public interface PoemTypeCrawlerByType {
 
-    void poemTypeCrawlerHandler(String url);
+    void poemTypeCrawlerHandler(String url, String id);
 }

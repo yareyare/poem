@@ -1,22 +1,16 @@
 package com.ivy.service;
 
-import java.util.List;
-
 import com.ivy.model.po.Session;
 
+/**
+ * Created by admin on 2017/11/22.
+ */
 public interface SessionService {
+    Session getSessionById(Integer accessToken);
 
-	public int insert(Session record) throws Exception;
+    int updateSession(Session session);
 
-	public Integer insertAndGetId(Session record) throws Exception;
+    void invalidOldSession(Integer id);
 
-	public Session validateSession(Integer id) throws Exception;
-
-	public int updateSession(Session session) throws Exception;
-
-	public List<Session> getSessionByUserid(Integer uid) throws Exception;
-
-	public Session getSessionById(Integer id) throws Exception;
-
-	public boolean invalidOldSession(Integer uid) throws Exception;
+    boolean insertAndGetId(Session session);
 }

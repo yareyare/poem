@@ -25,7 +25,11 @@ public class BaseException extends Throwable {
 		super(code.getCode()+"" );
 	}
 
-	public BaseException(Integer code, Throwable cause ) {
+	public BaseException(Integer code, Exception e ) {
+		super( code.toString(), e );
+	}
+
+	public BaseException(Code code, Throwable cause ) {
 		super( code.toString(), cause );
 	}
 	

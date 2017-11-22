@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by admin on 2017/11/8.
@@ -38,5 +40,13 @@ public class PoemTypeRefServiceImpl implements PoemTypeRefService {
             throw new BaseException(Code.DB_ERROR);
         }
         return false;
+    }
+
+    @Override
+    public PoemTypeRef get(Integer poemId, Integer typeId) throws BaseException {
+        Map<String ,Integer> param = new HashMap<>();
+        param.put("poemId",poemId);
+        param.put("typeId",typeId);
+        return poemTypeRefMapper.selectByParam(param);
     }
 }

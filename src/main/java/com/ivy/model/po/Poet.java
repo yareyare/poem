@@ -1,23 +1,20 @@
 package com.ivy.model.po;
 
-import java.util.Date;
+import com.ivy.model.BasePo;
 
-public class Poet {
+
+public class Poet extends BasePo{
+
     private Integer id;
 
     private String name;
 
+    private String introduce;
+
     private Integer dynastyId;
 
-    private Integer status;
+    private String pic_url;
 
-    private Integer deleteFlag;
-
-    private Integer dataVersion;
-
-    private Date createDate;
-
-    private Date updateDate;
 
     public Integer getId() {
         return id;
@@ -35,6 +32,14 @@ public class Poet {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
     public Integer getDynastyId() {
         return dynastyId;
     }
@@ -43,43 +48,12 @@ public class Poet {
         this.dynastyId = dynastyId;
     }
 
-    public Integer getStatus() {
-        return status;
+
+    public String getPic_url() {
+        return pic_url;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getDeleteFlag() {
-        return deleteFlag;
-    }
-
-    public void setDeleteFlag(Integer deleteFlag) {
-        this.deleteFlag = deleteFlag;
-    }
-
-    public Integer getDataVersion() {
-        return dataVersion;
-    }
-
-    public void setDataVersion(Integer dataVersion) {
-        this.dataVersion = dataVersion;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
     }
 }

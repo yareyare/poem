@@ -1,6 +1,7 @@
 package com.ivy.dao;
 
 import com.ivy.model.po.PoetDetail;
+import com.ivy.model.vo.PoetDetailVO;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface PoetDetailMapper {
 
     PoetDetail selectByPrimaryKey(Integer id);
 
-    List<PoetDetail> selectList(Integer poetId);
+    List<PoetDetailVO> selectList(Integer poetId);
 
     int updateByPrimaryKeySelective(PoetDetail record);
 

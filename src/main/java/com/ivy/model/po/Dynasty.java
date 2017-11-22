@@ -1,22 +1,12 @@
 package com.ivy.model.po;
 
-import java.util.Date;
+import com.ivy.model.BasePo;
 
-public class Dynasty {
+public class Dynasty extends BasePo{
 
     private Integer id;
 
     private String name;
-
-    private Integer status;
-
-    private Integer deleteFlag;
-
-    private Integer dataVersion;
-
-    private Date createDate;
-
-    private Date updateDate;
 
     public Integer getId() {
         return id;
@@ -34,43 +24,4 @@ public class Dynasty {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getDeleteFlag() {
-        return deleteFlag;
-    }
-
-    public void setDeleteFlag(Integer deleteFlag) {
-        this.deleteFlag = deleteFlag;
-    }
-
-    public Integer getDataVersion() {
-        return dataVersion;
-    }
-
-    public void setDataVersion(Integer dataVersion) {
-        this.dataVersion = dataVersion;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
 }

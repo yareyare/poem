@@ -3,6 +3,7 @@ package com.ivy.serviceImpl;
 import com.ivy.model.BaseException;
 import com.ivy.dao.PoemDetailMapper;
 import com.ivy.model.po.PoemDetail;
+import com.ivy.model.vo.PoemDetailVO;
 import com.ivy.service.PoemDetailService;
 import com.ivy.tool.Code;
 import org.apache.log4j.Logger;
@@ -49,9 +50,9 @@ public class PoemDetailServiceImpl implements PoemDetailService {
     }
 
     @Override
-    public List<PoemDetail> getList(Integer poemId) throws BaseException {
+    public List<PoemDetailVO> getList(Integer poemId) throws BaseException {
         try {
-            List<PoemDetail> poemDetailWithBLOBses = poemDetailMapper.selectList(poemId);
+            List<PoemDetailVO> poemDetailWithBLOBses = poemDetailMapper.selectList(poemId);
             return poemDetailWithBLOBses;
         } catch (Exception e) {
             LOG.error("【PoemDetailServiceImpl.save】",e);
