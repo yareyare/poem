@@ -24,7 +24,7 @@ CREATE TABLE `poem` (
   `content` text  COMMENT '诗歌正文',
   `title` varchar(255)  DEFAULT NULL,
   `dynasty_id` varchar(16)  NOT NULL COMMENT '朝代id',
-  `types` varchar(255)  COMMENT '本诗所有的所属类型',
+  `types` varchar(255) NOT NULL COMMENT '本诗所有的所属类型',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '可用标志位：1-可用 0-停用',
   `delete_flag` int(1) NOT NULL DEFAULT '0' COMMENT '删除标志位：1-已删除 0-未删除',
   `data_version` int(8) NOT NULL DEFAULT '0' COMMENT '数据修改版本号',
@@ -74,11 +74,9 @@ CREATE TABLE `poem_type_ref` (
   KEY `_poemId_typeId` (`poem_id`,`poem_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
-
 CREATE TABLE `poet` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) DEFAULT NULL,
-  `introduce` text NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `dynasty_id` int(4) NOT NULL COMMENT '朝代id',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '可用标志位：1-可用 0-停用',
   `delete_flag` int(1) NOT NULL DEFAULT '0' COMMENT '删除标志位：1-已删除 0-未删除',
@@ -87,8 +85,6 @@ CREATE TABLE `poet` (
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 
 CREATE TABLE `poet_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

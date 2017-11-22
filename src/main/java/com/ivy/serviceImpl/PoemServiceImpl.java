@@ -4,12 +4,14 @@ import com.ivy.model.BaseException;
 import com.ivy.dao.PoemMapper;
 import com.ivy.model.po.Poem;
 import com.ivy.model.vo.PoemVO;
+import com.ivy.service.PoemDetailService;
 import com.ivy.service.PoemService;
 import com.ivy.tool.Code;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +26,9 @@ public class PoemServiceImpl implements PoemService {
 
     @Autowired
     private PoemMapper poemMapper;
+
+    @Autowired
+    private PoemDetailService poemDetailService;
 
     @Override
     public Integer save(Poem poem) throws BaseException {
@@ -41,7 +46,7 @@ public class PoemServiceImpl implements PoemService {
                     id = resultPoem.getId();
                 }
             }
-        } catch (BaseException e) {
+        } catch (Exception e) {
             LOG.error("【PoemServiceImpl.getByTitleAndDynastyAndAuthor】", e);
             throw new BaseException(Code.DB_ERROR);
         }
@@ -66,12 +71,27 @@ public class PoemServiceImpl implements PoemService {
     }
 
     @Override
-    public PoemVO getById(Integer id) throws BaseException {
-        return null;
+    public List<PoemVO> getIndexPoem() throws BaseException {
+        List<PoemVO> poemList = new ArrayList<>();
+        try {
+            poemList = poemMapper.selectIndexPoem();
+        } catch (Exception e) {
+            LOG.error("【PoemServiceImpl.getIndexPoem】", e);
+            throw new BaseException(Code.DB_ERROR);
+        }
+
+        return poemList;
     }
 
     @Override
-    public List<PoemVO> getIndexPoem() throws BaseException {
+    public PoemVO getById(Integer id) throws BaseException {
+        try {
+            PoemVO poem = poemMapper.selectById(id);
+            return poem;
+        } catch (Exception e) {
+            LOG.error("【PoemServiceImpl.getById】", e);
+            e.printStackTrace();
+        }
         return null;
     }
 }
