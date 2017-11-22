@@ -25,7 +25,7 @@
     content
   </sql>
 
-  <select id="selectById" parameterType="java.lang.String" resultType="com.ivy.model.vo.PoemVO">
+  <select id="selectById" parameterType="java.lang.Integer" resultType="com.ivy.model.vo.PoemVO">
     select distinct
     pm.id as poemId,pm.title,pm.content, pt.id as poetId,pt.name as poetName, d.id as poemDynastyId, d.name as poemDynastyName
     from poem as pm,poet as pt,dynasty as d,poem_type_ref as ref
