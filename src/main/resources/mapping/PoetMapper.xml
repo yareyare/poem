@@ -4,9 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ivy.model.po.Poet">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="dynasty_id" jdbcType="INTEGER" property="dynastyId" />
-    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
     <result column="data_version" jdbcType="INTEGER" property="dataVersion" />
@@ -14,19 +12,8 @@
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name,introduce, dynasty_id, pic_url, status, delete_flag, data_version, create_date, update_date
+    id, name, dynasty_id, status, delete_flag, data_version, create_date, update_date
   </sql>
-  <sql id="VO_Column_List">
-    id, name,introduce, dynasty_id, pic_url
-  </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultType="com.ivy.model.vo.PoetVO">
-    select
-    <include refid="VO_Column_List" />
-    from poet
-    where id = #{poetId,jdbcType=INTEGER}
-    and status = 1
-    and delete_flag = 0
-  </select>
 
   <select id="selectByNameAndDynastyId" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
@@ -48,10 +35,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ivy.model.po.Poet">
-    insert into poet (id, name,introduce, dynasty_id,pic_url,
+    insert into poet (id, name, dynasty_id, 
       status, delete_flag, data_version, 
       create_date, update_date)
-    values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{introduce ,jdbcType=VARCHAR}, #{dynastyId,jdbcType=INTEGER},#{pic_url ,jdbcType=VARCHAR},
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{dynastyId,jdbcType=INTEGER}, 
       #{status,jdbcType=INTEGER}, #{deleteFlag,jdbcType=INTEGER}, #{dataVersion,jdbcType=INTEGER}, 
       #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
@@ -64,14 +51,8 @@
       <if test="name != null">
         name,
       </if>
-      <if test="introduce != null">
-        introduce,
-      </if>
       <if test="dynastyId != null">
         dynasty_id,
-      </if>
-      <if test="picUrl != null">
-        pic_url,
       </if>
       <if test="status != null">
         status,
@@ -96,14 +77,8 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="introduce != null">
-        #{introduce,jdbcType=VARCHAR},
-      </if>
       <if test="dynastyId != null">
         #{dynastyId,jdbcType=INTEGER},
-      </if>
-      <if test="picUrl != null">
-        #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -128,15 +103,8 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="introduce != null">
-        introduce = #{introduce,jdbcType=VARCHAR},
-      </if>
-
       <if test="dynastyId != null">
         dynasty_id = #{dynastyId,jdbcType=INTEGER},
-      </if>
-      <if test="picUrl != null">
-        pic_url = #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -159,9 +127,7 @@
   <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.Poet">
     update poet
     set name = #{name,jdbcType=VARCHAR},
-      introduce = #{introduce,jdbcType=VARCHAR},
       dynasty_id = #{dynastyId,jdbcType=INTEGER},
-      pic_url = #{picUrl,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       delete_flag = #{deleteFlag,jdbcType=INTEGER},
       data_version = #{dataVersion,jdbcType=INTEGER},

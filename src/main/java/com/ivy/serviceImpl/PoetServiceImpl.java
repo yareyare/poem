@@ -1,10 +1,8 @@
 package com.ivy.serviceImpl;
 
-import com.ivy.dao.PoetDetailMapper;
 import com.ivy.model.BaseException;
 import com.ivy.dao.PoetMapper;
 import com.ivy.model.po.Poet;
-import com.ivy.model.vo.PoetVO;
 import com.ivy.service.PoetService;
 import com.ivy.tool.Code;
 import org.apache.log4j.Logger;
@@ -25,9 +23,6 @@ public class PoetServiceImpl implements PoetService {
 
     @Autowired
     private PoetMapper poetMapper;
-
-    @Autowired
-    private PoetDetailMapper poetDetailMapper;
 
 
     @Override
@@ -73,17 +68,6 @@ public class PoetServiceImpl implements PoetService {
             return poet;
         } catch (Exception e) {
             LOG.error("【PoetServiceImpl.getByNameAndDynastyId】",e);
-            throw new BaseException(Code.DB_ERROR);
-        }
-    }
-
-    @Override
-    public PoetVO getPoetById(Integer poetId) throws BaseException {
-        try {
-            PoetVO poet = poetMapper.selectById(poetId);
-            return poet;
-        } catch (Exception e) {
-            LOG.error("【PoetServiceImpl.getPoetById】",e);
             throw new BaseException(Code.DB_ERROR);
         }
     }

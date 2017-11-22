@@ -16,5 +16,5 @@ public interface PoemTypeRefMapper {
 
     int updateByPrimaryKey(PoemTypeRef record);
 
-    PoemTypeRef selectByParam(Map<String, Integer> param);
+    PoemTypeRef selectByParam(Map<String,Integer> param);
 }
