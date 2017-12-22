@@ -9,4 +9,6 @@ import com.ivy.tool.Return;
 public interface SavePoemService {
 
     Return save(PoemCrawl poemCrawl);
+
+    Integer savePoemType1(String type);
 }

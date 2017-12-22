@@ -1,7 +1,9 @@
 target/
 .idea/*
- .idea/workspace.xml
+.idea/workspace.xml
 .settings
+.DS_Store
+poem.log.*
 *.log
 *.error
 *.iml
@@ -15,3 +17,7 @@ target/generated-sources/
 
 target/poem/WEB-INF/classes/com/ivy/model/vo/
 
+.DS_Store
+.idea/
+poem.log.2017-11-22
+src/main/webapp/poetPic/

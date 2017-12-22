@@ -23,6 +23,7 @@ public class PoetCrawler {
         Element leftElement = main3.get(0).getElementsByClass("left").get(0);
 
         PoetCrawl poet = new PoetCrawl();
+        poet.setRefId(Integer.valueOf(url.substring(url.indexOf("_")+1,url.indexOf(".aspx"))));
         int sort = 0;
         for (Element div : leftElement.children()) {
             sort ++ ;
@@ -93,7 +94,7 @@ public class PoetCrawler {
                 poetDetail.setSort(sort);
 
             }
-            if (div.attr("class").equals("cankao")) { // 标签
+            if (divChildren.attr("class").equals("cankao")) { // 标签
                 StringBuffer cankaoContent = new StringBuffer();
                 Elements cankaoChildren = divChildren.getAllElements();
                 for (Element e : cankaoChildren) {
@@ -115,16 +116,16 @@ public class PoetCrawler {
                     }
                 }
 
-                poetDetail.setCankao(cankaoContent.toString());
+                poetDetail.setCankao(cankaoContent.toString().replaceAll("站务邮箱：service@gushiwen.org",""));
             }
         }
         return poetDetail;
     }
 
     public static void main(String[] args) {
-        String url = "http://so.gushiwen.org/author_510.aspx";
+        String url = "http://so.gushiwen.org/author_183.aspx";
         String chaodai = "宋代";
-        String name = "范仲淹";
+        String name = "苏轼";
         PoetCrawl poetCrawl = poetCrawl(url, chaodai, name);
         System.out.println(poetCrawl.toJson());
     }

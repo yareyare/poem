@@ -3,6 +3,7 @@
 <mapper namespace="com.ivy.dao.PoemMapper">
   <resultMap id="BaseResultMap" type="com.ivy.model.po.Poem">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ref_id" jdbcType="INTEGER" property="refId" />
     <result column="poet_id" jdbcType="INTEGER" property="poetId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="dynasty_id" jdbcType="VARCHAR" property="dynastyId" />
@@ -18,7 +19,7 @@
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, poet_id, title, dynasty_id, types, status, delete_flag, data_version, create_date, 
+    id,ref_id, poet_id, title, dynasty_id, types, status, delete_flag, data_version, create_date,
     update_date
   </sql>
   <sql id="Blob_Column_List">
@@ -66,11 +67,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ivy.model.po.Poem">
-    insert into poem (id, poet_id, title, 
+    insert into poem (id, ref_id, poet_id, title,
       dynasty_id, types, status, 
       delete_flag, data_version, create_date, 
       update_date, content)
-    values (#{id,jdbcType=INTEGER}, #{poetId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER},#{refId,jdbcType=INTEGER}, #{poetId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
       #{dynastyId,jdbcType=VARCHAR}, #{types,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{deleteFlag,jdbcType=INTEGER}, #{dataVersion,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateDate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
@@ -80,6 +81,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="refId != null">
+        ref_id,
       </if>
       <if test="poetId != null">
         poet_id,
@@ -116,6 +120,9 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="refId != null">
+        #{refId,jdbcType=INTEGER},
+      </if>
       <if test="poetId != null">
         #{poetId,jdbcType=INTEGER},
       </if>
@@ -151,6 +158,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ivy.model.po.Poem">
     update poem
     <set>
+      <if test="refId != null">
+        ref_id = #{refId,jdbcType=INTEGER},
+      </if>
       <if test="poetId != null">
         poet_id = #{poetId,jdbcType=INTEGER},
       </if>
@@ -186,7 +196,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ivy.model.po.Poem">
     update poem
-    set poet_id = #{poetId,jdbcType=INTEGER},
+    set ref_id = #{refId,jdbcType=INTEGER},
+      poet_id = #{poetId,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       dynasty_id = #{dynastyId,jdbcType=VARCHAR},
       types = #{types,jdbcType=VARCHAR},
@@ -200,7 +211,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ivy.model.po.Poem">
     update poem
-    set poet_id = #{poetId,jdbcType=INTEGER},
+    set ref_id = #{refId,jdbcType=INTEGER},
+      poet_id = #{poetId,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       dynasty_id = #{dynastyId,jdbcType=VARCHAR},
       types = #{types,jdbcType=VARCHAR},

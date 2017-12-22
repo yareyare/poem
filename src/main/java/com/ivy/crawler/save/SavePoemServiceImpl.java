@@ -47,6 +47,16 @@ public class SavePoemServiceImpl implements SavePoemService {
     @Autowired
     private PoetDetailService poetDetailService;
 
+    @Override
+    public Integer savePoemType1(String type) {
+        try {
+            return poemTypeService.save(type);
+        } catch (BaseException e) {
+            LOG.error("诗歌大类保存失败",e);
+        }
+        return null;
+    }
+
     public Return save(PoemCrawl poemCrawl) {
         if (poemCrawl == null){
             return Return.FAIL(Code.PARAM_NULL);
@@ -166,6 +176,7 @@ public class SavePoemServiceImpl implements SavePoemService {
             }
             //保存诗歌并返回Id， 如果存在则直接返回id；
             poem = new Poem();
+            poem.setRefId(poemCrawl.getRefId());
             poem.setDynastyId(dynastyId);
             poem.setPoetId(poetId);
             poem.setTitle(poemCrawl.getTitle());
@@ -216,6 +227,7 @@ public class SavePoemServiceImpl implements SavePoemService {
             } else {
                 //保存诗人并返回Id， 如果存在则直接返回id；
                 poet = new Poet();
+                poet.setRefId(poemCrawl.getPoetCrawl().getRefId());
                 poet.setDynastyId(dynastyId);
                 poet.setName(poemCrawl.getZuozhe());
                 poet.setCreateDate(new Date());

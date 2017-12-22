@@ -24,4 +24,6 @@ public interface PoemTypeMapper {
     List<TypeVO> selectType() throws Exception;
 
     List<SubTypeVO> selectSubType(String type) throws Exception;
+
+    PoemType selectByType(Map<String, String> param);
 }

@@ -6,6 +6,8 @@ public class Poem {
 
     private Integer id;
 
+    private Integer refId;
+
     private Integer poetId;
 
     private String title;
@@ -32,6 +34,14 @@ public class Poem {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getRefId() {
+        return refId;
+    }
+
+    public void setRefId(Integer refId) {
+        this.refId = refId;
     }
 
     public Integer getPoetId() {

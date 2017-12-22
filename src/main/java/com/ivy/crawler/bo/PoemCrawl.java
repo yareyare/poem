@@ -11,6 +11,7 @@ import java.util.List;
 
 public class PoemCrawl extends BaseObject{
 
+    private Integer refId;   //爬下来的诗歌的id
     private String title;    //标题
     private String chaodai;  //朝代
     private String zuozhe;   //作者
@@ -26,7 +27,8 @@ public class PoemCrawl extends BaseObject{
     public PoemCrawl() {
     }
 
-    public PoemCrawl(String title, String chaodai, String zuozhe, String content, String tag, String type, String type1, PoetCrawl poetCrawl, List<PoemDetailCrawl> detailList) {
+    public PoemCrawl(Integer refId, String title, String chaodai, String zuozhe, String content, String tag, String type, String type1, PoetCrawl poetCrawl, List<PoemDetailCrawl> detailList) {
+        this.refId = refId;
         this.title = title;
         this.chaodai = chaodai;
         this.zuozhe = zuozhe;
@@ -36,6 +38,14 @@ public class PoemCrawl extends BaseObject{
         this.type1 = type1;
         this.poetCrawl = poetCrawl;
         this.detailList = detailList;
+    }
+
+    public Integer getRefId() {
+        return refId;
+    }
+
+    public void setRefId(Integer refId) {
+        this.refId = refId;
     }
 
     public String getType() {

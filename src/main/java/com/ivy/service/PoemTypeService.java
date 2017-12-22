@@ -14,7 +14,11 @@ public interface PoemTypeService {
 
     Integer save(PoemType poemType) throws BaseException;
 
+    Integer save(String type1) throws BaseException;
+
     Integer save(String type1, String type2) throws BaseException;
+
+    PoemType get(String type1) throws BaseException;
 
     PoemType get(String type1, String type2) throws BaseException;
 

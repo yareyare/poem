@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by admin on 2017/11/9.
  */
 
-//@RestController
-//@RequestMapping("crawler")
+@RestController
+@RequestMapping("crawler")
 public class PoemCrawlerController {
 
-//    @Autowired
-//    private PoemTypeCrawlerByType poemTypeCrawlerByTyp;
-//
-//    @RequestMapping(value = "poem", method = RequestMethod.GET)
-//    public Return crawler(String url,String id ){
-//        poemTypeCrawlerByTyp.poemTypeCrawlerHandler(url,id);
-//        return Return.SUCCESS(Code.SUCCESS);
-//    }
+    @Autowired
+    private PoemTypeCrawlerByType poemTypeCrawlerByTyp;
+
+    @RequestMapping(value = "poem", method = RequestMethod.GET)
+    public Return crawler(String url,String id ){
+        poemTypeCrawlerByTyp.poemTypeCrawlerHandler(url,id);
+        return Return.SUCCESS(Code.SUCCESS);
+    }
 
 }
