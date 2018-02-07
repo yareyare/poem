@@ -16,7 +16,7 @@ public interface PoemMapper {
 
     PoemVO selectById(Integer id) throws Exception;
 
-    Poem selectByTitleDynastyAuthor(Map<String, Object> param) throws Exception;
+    Poem selectByTitleDynastyAuthor(Map<String,Object> param) throws Exception;
 
     int updateByPrimaryKeySelective(Poem record) throws Exception;
 

@@ -15,7 +15,7 @@ public interface PoetMapper {
 
     Poet selectByPrimaryKey(Integer id) throws Exception;
 
-    Poet selectByNameAndDynastyId(Map<String, Object> param) throws Exception;
+    Poet selectByNameAndDynastyId(Map<String,Object> param) throws Exception;
 
     int updateByPrimaryKeySelective(Poet record) throws Exception;
 

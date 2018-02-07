@@ -13,7 +13,7 @@ public interface PoemService {
 
     Integer save(Poem poemCrawl)throws BaseException;
 
-    Poem getByTitleAndDynastyAndAuthor(String title, Integer dynastyId, Integer poetId) throws BaseException;
+    Poem getByTitleAndDynastyAndAuthor(String title, Integer dynastyId,Integer poetId) throws BaseException;
 
     PoemVO getById(Integer id) throws BaseException;
 

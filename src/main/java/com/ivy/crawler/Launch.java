@@ -22,11 +22,9 @@ public class Launch {
 //        Thread.currentThread().join();
         LOG.info("************** crawler server started *****************");
 
-        // *****   启动后调用接口爬诗歌；
-
-//        String url = "http://so.gushiwen.org/shiwen/tags.aspx";
-//        String url = "http://so.gushiwen.org/gushi/tangshi.aspx";  //20788
-//        new PoemTypeCrawlerByTypeImpl().poemTypeCrawlerHandler(url,"20788");
+        //String url = "http://so.gushiwen.org/shiwen/tags.aspx";
+//        String url = "http://so.gushiwen.org/gushi/tangshi.aspx";
+//        PoemTypeCrawlerByType.poemTypeCrawlerHandler(url);
 
     }
 

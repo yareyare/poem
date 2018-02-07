@@ -12,11 +12,11 @@ import java.util.List;
  */
 public interface PoetService {
 
-    Integer add(String name, Integer dynastyId) throws BaseException;
+    Integer add (String name ,Integer dynastyId) throws BaseException;
 
-    Integer add(Poet poet) throws BaseException;
+    Integer add (Poet poet) throws BaseException;
 
-    Poet getByNameAndDynastyId(String name, Integer DynastyId) throws BaseException;
+    Poet getByNameAndDynastyId(String name,Integer DynastyId) throws BaseException;
 
     PoetVO getPoetById(Integer poetId) throws BaseException;
 

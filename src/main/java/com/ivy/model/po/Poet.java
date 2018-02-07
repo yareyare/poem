@@ -7,23 +7,14 @@ public class Poet extends BasePo{
 
     private Integer id;
 
-    private Integer refId;
-
     private String name;
 
     private String introduce;
 
     private Integer dynastyId;
 
-    private String picUrl;
+    private String pic_url;
 
-    public Integer getRefId() {
-        return refId;
-    }
-
-    public void setRefId(Integer refId) {
-        this.refId = refId;
-    }
 
     public Integer getId() {
         return id;
@@ -57,11 +48,12 @@ public class Poet extends BasePo{
         this.dynastyId = dynastyId;
     }
 
-    public String getPicUrl() {
-        return picUrl;
+
+    public String getPic_url() {
+        return pic_url;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
     }
 }
