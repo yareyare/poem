@@ -2,7 +2,10 @@
 <!DOCTYPE configuration PUBLIC  
     "-//mybatis.org//DTD Config 3.0//EN"  
     "http://mybatis.org/dtd/mybatis-3-config.dtd">  
-<configuration>  
+<configuration>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
     <mappers> <!-- spring 直接扫描xml文件，此处不需要配置 -->
         <!--<mapper resource="mapping/UsersMapper.xml"/>-->
         <!--<mapper resource="mapping/AppreciationMapper.xml"/>-->

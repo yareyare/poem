@@ -28,13 +28,11 @@
   </sql>
 
   <select id="selectType" parameterType="java.util.Map" resultMap="TypeResultMap">
-    SELECT
-        id,type
-    FROM
-        poem.poem_type
-    where status = 1 and delete_flag = 0
-    GROUP BY type
-    ORDER BY id
+    select pt.type,pt.id from
+    poem_all.poem_type pt
+    join (select `type`,min(id) id from poem_all.poem_type group by type) b
+    on pt.type=b.type and pt.id=b.id
+    order by id asc
   </select>
 
   <select id="selectSubType" parameterType="java.lang.String" resultMap="SubTypeResultMap">

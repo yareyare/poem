@@ -23,4 +23,6 @@ public interface PoemMapper {
     int updateByPrimaryKey(Poem record) throws Exception;
 
     List<PoemVO> selectIndexPoem() throws Exception;
+
+    Poem selectByRefId(Integer refId) throws Exception;
 }

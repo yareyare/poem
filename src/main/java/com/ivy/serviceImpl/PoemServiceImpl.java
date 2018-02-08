@@ -84,14 +84,24 @@ public class PoemServiceImpl implements PoemService {
     }
 
     @Override
+    public Poem getByRefId(Integer refId) throws BaseException {
+        try {
+            Poem poem = poemMapper.selectByRefId(refId);
+            return poem;
+        } catch (Exception e) {
+            LOG.error("【PoemServiceImpl.getByRefId】");
+            throw new BaseException(Code.DB_ERROR);
+        }
+    }
+
+    @Override
     public PoemVO getById(Integer id) throws BaseException {
         try {
             PoemVO poem = poemMapper.selectById(id);
             return poem;
         } catch (Exception e) {
             LOG.error("【PoemServiceImpl.getById】", e);
-            e.printStackTrace();
+            throw new BaseException(Code.DB_ERROR);
         }
-        return null;
     }
 }

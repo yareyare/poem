@@ -18,4 +18,7 @@ public interface PoemService {
     PoemVO getById(Integer id) throws BaseException;
 
     List<PoemVO> getIndexPoem()throws BaseException;
+
+    Poem getByRefId(Integer refId) throws BaseException;
+
 }

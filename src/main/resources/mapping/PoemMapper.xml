@@ -39,7 +39,7 @@
     pm.id as poemId,pm.title,pm.content, pt.id as poetId,pt.name as poetName, d.id as poemDynastyId, d.name as poemDynastyName
     from poem as pm,poet as pt,dynasty as d,poem_type_ref as ref
     where pm.poet_id = pt.id and pm.dynasty_id = d.id and pm.id = ref.poem_id
-    and ref.poem_type_id in (1)
+    and ref.poem_type_id in (2)
     ORDER BY RAND() limit 1,10
   </select>
 

@@ -227,6 +227,9 @@ public class SavePoemServiceImpl implements SavePoemService {
             } else {
                 //保存诗人并返回Id， 如果存在则直接返回id；
                 poet = new Poet();
+                if(poemCrawl.getPoetCrawl()==null){
+                    return Return.FAIL(Code.SAVE_TYPE_ERROR);
+                }
                 poet.setRefId(poemCrawl.getPoetCrawl().getRefId());
                 poet.setDynastyId(dynastyId);
                 poet.setName(poemCrawl.getZuozhe());

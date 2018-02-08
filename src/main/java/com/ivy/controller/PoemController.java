@@ -47,7 +47,6 @@ public class PoemController {
             }
             return Return.SUCCESS(Code.SUCCESS.code, Code.SUCCESS.note).put("poemList", list);
         } catch (BaseException e) {
-            e.printStackTrace();
             logger.error("获取首页诗歌内容失败", e);
             return Return.FAIL(Code.FAILT.code, Code.FAILT.note);
         }
