@@ -15,7 +15,7 @@ public interface PoemTypeMapper {
 
     PoemType selectByPrimaryKey(Integer id) throws Exception;
 
-    PoemType selectByTypeAndType1(Map<String, String> param) throws Exception;
+    PoemType selectByTypeAndType1(Map<String,String> param) throws Exception;
 
     int updateByPrimaryKeySelective(PoemType record) throws Exception;
 
@@ -24,6 +24,4 @@ public interface PoemTypeMapper {
     List<TypeVO> selectType() throws Exception;
 
     List<SubTypeVO> selectSubType(String type) throws Exception;
-
-    PoemType selectByType(Map<String, String> param);
 }

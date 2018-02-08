@@ -42,7 +42,6 @@ public class PoemTypeCrawlerByTypeImpl implements PoemTypeCrawlerByType {
         for (Element aTag : aTags) {
             String href = aTag.attr("href");
             String type = aTag.text();
-            savePoemService.savePoemType1(type);
             System.out.println("********" + type + "   " + href);
             poemType1CrawlerHandler(type, "http://so.gushiwen.org/" + href,id);
             if (type.equals("更多>>")) {
@@ -181,7 +180,6 @@ public class PoemTypeCrawlerByTypeImpl implements PoemTypeCrawlerByType {
         Elements main3 = document.getElementsByClass("main3");
         Elements sons = main3.get(0).getElementsByClass("left").get(0).children();
         PoemCrawl poemCrawl = new PoemCrawl();
-        poemCrawl.setRefId(Integer.valueOf(href.substring(href.indexOf("_")+1,href.indexOf(".aspx"))));
         poemCrawl.setType(type1);
         poemCrawl.setType1(type2);
         int sort = 0;

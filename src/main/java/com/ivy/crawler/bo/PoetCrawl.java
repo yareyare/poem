@@ -11,7 +11,6 @@ import java.util.List;
 public class PoetCrawl extends BaseObject{
 
     private Integer id;
-    private Integer refId; //爬下来的诗人的id
     private String name;
     private String introduce;
     private String picture; //base64
@@ -22,9 +21,8 @@ public class PoetCrawl extends BaseObject{
     public PoetCrawl() {
     }
 
-    public PoetCrawl(Integer id,Integer refId, String name, String introduce, String picture, Integer dynastyId, List<PoetCrawlDetail> poetCrawlDetails) {
+    public PoetCrawl(Integer id, String name, String introduce, String picture, Integer dynastyId, List<PoetCrawlDetail> poetCrawlDetails) {
         this.id = id;
-        this.refId = refId;
         this.name = name;
         this.introduce = introduce;
         this.picture = picture;
@@ -54,14 +52,6 @@ public class PoetCrawl extends BaseObject{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getRefId() {
-        return refId;
-    }
-
-    public void setRefId(Integer refId) {
-        this.refId = refId;
     }
 
     public String getName() {

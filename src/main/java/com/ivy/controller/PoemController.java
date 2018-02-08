@@ -52,25 +52,6 @@ public class PoemController {
         }
     }
 
-    //首页显示的诗歌
-    @RequestMapping(value="indexWithPage",method= RequestMethod.GET)
-    public Return indexWithPage(HttpServletRequest resuqest, HttpServletResponse response){
-        //response.setHeader("Access-Control-Allow-Origin", "*");
-        try {
-            List<PoemVO> list = poemService.getIndexPoem();
-            for(PoemVO p:list){
-                System.out.println(p.getTitle());
-                System.out.println(p.getPoetName());
-                System.out.println(p.getContent());
-            }
-            return Return.SUCCESS(Code.SUCCESS.code, Code.SUCCESS.note).put("poemList", list);
-        } catch (BaseException e) {
-            e.printStackTrace();
-            logger.error("获取首页诗歌内容失败", e);
-            return Return.FAIL(Code.FAILT.code, Code.FAILT.note);
-        }
-    }
-
     //根据id获取诗歌详情，包括译注赏列表
     @RequestMapping(value = "getDetail", method = RequestMethod.GET)
     public Return getDetail(HttpServletRequest resuqest, HttpServletResponse response, @RequestParam Integer poemId){
